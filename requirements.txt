@@ -1,0 +1,35 @@
+# ESPN Fantasy Football Personal Data Toolkit Dependencies
+
+# Core ESPN API library
+espn-api==0.45.1
+
+# Data processing and analysis
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Data visualization (optional, for future dashboards)
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+
+# Web framework (optional, for future web interface)
+flask>=2.3.0
+fastapi>=0.100.0
+
+# Database (optional, for data persistence)
+sqlite3  # Built into Python
+sqlalchemy>=2.0.0
+
+# HTTP requests (already included with espn-api)
+requests>=2.31.0
+
+# Development and testing
+pytest>=7.4.0
+jupyter>=1.0.0
+ipython>=8.14.0
+
+# Configuration and environment
+python-dotenv>=1.0.0
+
+# Date/time handling
+python-dateutil>=2.8.0

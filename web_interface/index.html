@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League TB12 - Fantasy Odds</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        
+        .token-balance {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .token-balance h3 {
+            margin: 0;
+            color: #2a5298;
+        }
+        
+        .token-balance .tokens {
+            font-size: 2em;
+            font-weight: bold;
+            color: #28a745;
+            margin: 10px 0;
+        }
+        
+        .matchup-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid #2a5298;
+        }
+        
+        .matchup-header {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #666;
+            font-weight: bold;
+        }
+        
+        .teams-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .team {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .team-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .team-record {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .odds {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 10px 0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .odds.positive {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .odds.negative {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .bet-button {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .bet-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .bet-button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .vs {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2a5298;
+            margin: 0 20px;
+        }
+        
+        .projected-scores {
+            text-align: center;
+            margin: 15px 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .bet-history {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .bet-history h3 {
+            margin-top: 0;
+            color: #2a5298;
+        }
+        
+        .bet-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .bet-item:last-child {
+            border-bottom: none;
+        }
+        
+        .status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .status.pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status.won {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status.lost {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .refresh-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        
+        .refresh-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏈 League TB12 - Fantasy Odds</h1>
+        <p>Real-time odds and betting for your fantasy football league</p>
+    </div>
+    
+    <div class="token-balance">
+        <h3>Your Token Balance</h3>
+        <div class="tokens" id="tokens">1000</div>
+        <p>Tokens reset every Thursday morning</p>
+    </div>
+    
+    <div class="matchup-card">
+        <div class="matchup-header">Week 12 Matchups</div>
+        
+        <div class="teams-container">
+            <div class="team">
+                <div class="team-name">Drake Maye Start</div>
+                <div class="team-record">9-3 (788.68 pts)</div>
+                <div class="odds negative" id="odds-team1">-130</div>
+                <button class="bet-button" onclick="placeBet('Drake Maye Start', -130, 'team1')">
+                    Bet on Drake Maye Start
+                </button>
+            </div>
+            
+            <div class="vs">VS</div>
+            
+            <div class="team">
+                <div class="team-name">Please Swift Man</div>
+                <div class="team-record">6-6 (694.16 pts)</div>
+                <div class="odds positive" id="odds-team2">+77</div>
+                <button class="bet-button" onclick="placeBet('Please Swift Man', 77, 'team2')">
+                    Bet on Please Swift Man
+                </button>
+            </div>
+        </div>
+        
+        <div class="projected-scores">
+            Projected Score: 118.5 - 110.51
+        </div>
+    </div>
+    
+    <div class="matchup-card">
+        <div class="matchup-header">Week 12 Matchups</div>
+        
+        <div class="teams-container">
+            <div class="team">
+                <div class="team-name">Butter Aubrey</div>
+                <div class="team-record">8-4 (728.92 pts)</div>
+                <div class="odds positive" id="odds-team3">+110</div>
+                <button class="bet-button" onclick="placeBet('Butter Aubrey', 110, 'team3')">
+                    Bet on Butter Aubrey
+                </button>
+            </div>
+            
+            <div class="vs">VS</div>
+            
+            <div class="team">
+                <div class="team-name">Egpuka</div>
+                <div class="team-record">9-3 (779.58 pts)</div>
+                <div class="odds negative" id="odds-team4">-91</div>
+                <button class="bet-button" onclick="placeBet('Egpuka', -91, 'team4')">
+                    Bet on Egpuka
+                </button>
+            </div>
+        </div>
+        
+        <div class="projected-scores">
+            Projected Score: 127.5 - 120.4
+        </div>
+    </div>
+    
+    <div class="matchup-card">
+        <div class="matchup-header">Week 12 Matchups</div>
+        
+        <div class="teams-container">
+            <div class="team">
+                <div class="team-name">Alexander Mattison Chase</div>
+                <div class="team-record">5-7 (690.82 pts)</div>
+                <div class="odds negative" id="odds-team5">-105</div>
+                <button class="bet-button" onclick="placeBet('Alexander Mattison Chase', -105, 'team5')">
+                    Bet on Alexander Mattison Chase
+                </button>
+            </div>
+            
+            <div class="vs">VS</div>
+            
+            <div class="team">
+                <div class="team-name">Let MEEE Win Out</div>
+                <div class="team-record">4-8 (736.48 pts)</div>
+                <div class="odds positive" id="odds-team6">+95</div>
+                <button class="bet-button" onclick="placeBet('Let MEEE Win Out', 95, 'team6')">
+                    Bet on Let MEEE Win Out
+                </button>
+            </div>
+        </div>
+        
+        <div class="projected-scores">
+            Projected Score: 115.2 - 118.7
+        </div>
+    </div>
+    
+    <div class="bet-history">
+        <h3>Your Recent Bets</h3>
+        <div id="bet-list">
+            <div class="bet-item">
+                <span>No bets placed yet</span>
+                <span class="status pending">Start betting!</span>
+            </div>
+        </div>
+    </div>
+    
+    <button class="refresh-button" onclick="refreshOdds()">🔄 Refresh Odds</button>
+    
+    <script>
+        let tokens = 1000;
+        let bets = [];
+        
+        function placeBet(team, odds, teamId) {
+            const betAmount = prompt(`How many tokens to bet on ${team}?\n\nCurrent odds: ${odds > 0 ? '+' : ''}${odds}\nYour tokens: ${tokens}`);
+            
+            if (!betAmount || isNaN(betAmount) || betAmount <= 0) {
+                alert('Please enter a valid bet amount');
+                return;
+            }
+            
+            if (parseInt(betAmount) > tokens) {
+                alert('Insufficient tokens! You only have ' + tokens + ' tokens.');
+                return;
+            }
+            
+            const betAmountNum = parseInt(betAmount);
+            tokens -= betAmountNum;
+            
+            // Calculate potential payout
+            let potentialPayout;
+            if (odds < 0) {
+                potentialPayout = Math.round(betAmountNum * (100 / Math.abs(odds)));
+            } else {
+                potentialPayout = Math.round(betAmountNum * (odds / 100));
+            }
+            
+            // Add bet to history
+            const bet = {
+                id: Date.now(),
+                team: team,
+                amount: betAmountNum,
+                odds: odds,
+                potentialPayout: potentialPayout,
+                status: 'pending',
+                timestamp: new Date().toLocaleTimeString()
+            };
+            
+            bets.unshift(bet);
+            
+            // Update UI
+            updateTokenDisplay();
+            updateBetHistory();
+            
+            // Show confirmation
+            alert(`Bet placed!\n\nTeam: ${team}\nAmount: ${betAmountNum} tokens\nOdds: ${odds > 0 ? '+' : ''}${odds}\nPotential Payout: ${potentialPayout} tokens\n\nGood luck!`);
+        }
+        
+        function updateTokenDisplay() {
+            document.getElementById('tokens').textContent = tokens;
+            
+            // Change color based on balance
+            const tokenElement = document.getElementById('tokens');
+            if (tokens < 100) {
+                tokenElement.style.color = '#dc3545';
+            } else if (tokens < 500) {
+                tokenElement.style.color = '#ffc107';
+            } else {
+                tokenElement.style.color = '#28a745';
+            }
+        }
+        
+        function updateBetHistory() {
+            const betList = document.getElementById('bet-list');
+            
+            if (bets.length === 0) {
+                betList.innerHTML = '<div class="bet-item"><span>No bets placed yet</span><span class="status pending">Start betting!</span></div>';
+                return;
+            }
+            
+            betList.innerHTML = bets.map(bet => `
+                <div class="bet-item">
+                    <span>
+                        <strong>${bet.team}</strong><br>
+                        ${bet.amount} tokens @ ${bet.odds > 0 ? '+' : ''}${bet.odds} (${bet.timestamp})
+                    </span>
+                    <span class="status ${bet.status}">${bet.status.toUpperCase()}</span>
+                </div>
+            `).join('');
+        }
+        
+        function refreshOdds() {
+            // Simulate odds update
+            const oddsElements = document.querySelectorAll('.odds');
+            oddsElements.forEach(element => {
+                const currentOdds = parseInt(element.textContent);
+                const change = Math.floor(Math.random() * 10) - 5; // Random change between -5 and +5
+                const newOdds = currentOdds + change;
+                
+                element.textContent = newOdds > 0 ? '+' + newOdds : newOdds;
+                element.className = `odds ${newOdds > 0 ? 'positive' : 'negative'}`;
+            });
+            
+            alert('Odds updated! Check the new values above.');
+        }
+        
+        // Initialize
+        updateTokenDisplay();
+        updateBetHistory();
+        
+        // Simulate real-time updates every 30 seconds
+        setInterval(() => {
+            // Randomly update one set of odds
+            if (Math.random() < 0.3) { // 30% chance every 30 seconds
+                refreshOdds();
+            }
+        }, 30000);
+    </script>
+</body>
+</html>
