@@ -8,7 +8,7 @@ class TokenService:
     def __init__(self):
         self.supabase = get_supabase()
     
-    async def get_balance(self, team_id: UUID, week: int) -> Optional[TokenBalance]:
+    def get_balance(self, team_id: UUID, week: int) -> Optional[TokenBalance]:
         """Get current token balance for a team in a specific week"""
         try:
             response = self.supabase.table("token_balances").select("*").eq("team_id", str(team_id)).eq("week", week).execute()
@@ -20,11 +20,11 @@ class TokenService:
             print(f"Error getting token balance: {e}")
             return None
     
-    async def allocate_weekly_tokens(self, team_id: UUID, week: int) -> Optional[TokenBalance]:
+    def allocate_weekly_tokens(self, team_id: UUID, week: int) -> Optional[TokenBalance]:
         """Allocate 1000 tokens for a team for a specific week"""
         try:
             # Check if tokens already allocated for this week
-            existing_balance = await self.get_balance(team_id, week)
+            existing_balance = self.get_balance(team_id, week)
             if existing_balance:
                 return existing_balance
             
@@ -41,7 +41,7 @@ class TokenService:
             
             if response.data:
                 # Create transaction record
-                await self.create_transaction(
+                self.create_transaction(
                     team_id=team_id,
                     week=week,
                     amount=1000,
@@ -55,11 +55,11 @@ class TokenService:
             print(f"Error allocating weekly tokens: {e}")
             return None
     
-    async def deduct_tokens(self, team_id: UUID, amount: int, week: int, description: str = "Token deduction") -> bool:
+    def deduct_tokens(self, team_id: UUID, amount: int, week: int, description: str = "Token deduction") -> bool:
         """Deduct tokens from team balance"""
         try:
             # Get current balance
-            current_balance = await self.get_balance(team_id, week)
+            current_balance = self.get_balance(team_id, week)
             if not current_balance:
                 return False
             
@@ -78,7 +78,7 @@ class TokenService:
             
             if response.data:
                 # Create transaction record
-                await self.create_transaction(
+                self.create_transaction(
                     team_id=team_id,
                     week=week,
                     amount=-amount,  # Negative amount for deduction
@@ -91,11 +91,11 @@ class TokenService:
             print(f"Error deducting tokens: {e}")
             return False
     
-    async def add_tokens(self, team_id: UUID, amount: int, week: int, description: str = "Token addition") -> bool:
+    def add_tokens(self, team_id: UUID, amount: int, week: int, description: str = "Token addition") -> bool:
         """Add tokens to team balance"""
         try:
             # Get current balance
-            current_balance = await self.get_balance(team_id, week)
+            current_balance = self.get_balance(team_id, week)
             if not current_balance:
                 return False
             
@@ -109,7 +109,7 @@ class TokenService:
             
             if response.data:
                 # Create transaction record
-                await self.create_transaction(
+                self.create_transaction(
                     team_id=team_id,
                     week=week,
                     amount=amount,
@@ -122,7 +122,7 @@ class TokenService:
             print(f"Error adding tokens: {e}")
             return False
     
-    async def create_transaction(self, team_id: UUID, week: int, amount: int, transaction_type: str, description: str) -> Optional[TokenTransaction]:
+    def create_transaction(self, team_id: UUID, week: int, amount: int, transaction_type: str, description: str) -> Optional[TokenTransaction]:
         """Create a token transaction record"""
         try:
             transaction_data = {
@@ -142,7 +142,7 @@ class TokenService:
             print(f"Error creating transaction: {e}")
             return None
     
-    async def get_transaction_history(self, team_id: UUID, week: Optional[int] = None) -> List[TokenTransaction]:
+    def get_transaction_history(self, team_id: UUID, week: Optional[int] = None) -> List[TokenTransaction]:
         """Get transaction history for a team"""
         try:
             query = self.supabase.table("token_transactions").select("*").eq("team_id", str(team_id))
@@ -157,7 +157,7 @@ class TokenService:
             print(f"Error getting transaction history: {e}")
             return []
     
-    async def weekly_token_reset(self, week: int) -> bool:
+    def weekly_token_reset(self, week: int) -> bool:
         """Reset tokens for all teams for a new week"""
         try:
             # This would typically be called by a scheduler
