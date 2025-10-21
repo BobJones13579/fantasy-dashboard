@@ -4,3 +4,4 @@ supabase==2.22.1
 python-dotenv==1.1.1
 pydantic==2.12.3
 email-validator==2.1.1
+espn_api==0.45.1

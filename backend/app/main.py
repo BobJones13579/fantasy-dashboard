@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.v1 import tokens
+from app.api.v1 import tokens, espn
 from app.core.config import settings
 
 app = FastAPI(
@@ -20,6 +20,7 @@ app.add_middleware(
 
 # Include API routes
 app.include_router(tokens.router, prefix=f"{settings.API_V1_STR}/tokens", tags=["tokens"])
+app.include_router(espn.router, prefix=f"{settings.API_V1_STR}/espn", tags=["espn"])
 
 @app.get("/")
 async def root():
