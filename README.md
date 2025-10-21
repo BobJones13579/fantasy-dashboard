@@ -1,139 +1,143 @@
-# ESPN Fantasy Football Personal Data Toolkit
+# Fantasy Football Companion App
 
-A Python-based toolkit for accessing and analyzing your ESPN Fantasy Football league data.
+A comprehensive fantasy football companion platform that enhances private leagues with betting-style odds, strategic analytics, and social competition features.
 
-## 🏈 What This Does
+## 🎯 Overview
 
-This toolkit connects to your ESPN Fantasy Football league and provides:
-- **League Information**: Standings, team rosters, player stats
-- **Matchup Analysis**: Weekly scores, projections, win probabilities  
-- **Waiver Wire**: Free agent tracking and suggestions
-- **Data Export**: JSON, CSV, and database storage options
-- **Future Features**: Automated reports, Discord bots, web dashboards
+The Fantasy Football Companion App connects to existing fantasy platforms (ESPN, Yahoo, Sleeper) to generate custom odds, FAAB predictions, and trade analysis - all without handling real money. It's designed for fantasy football enthusiasts who want deeper engagement, strategic insights, and fun social competition within their existing leagues.
+
+## ✨ Key Features
+
+- **🏆 Live Matchup Odds Board**: Real-time betting-style odds with win probabilities, spreads, and totals
+- **💰 FAAB/Waiver Bid Predictor**: Strategic waiver wire bidding with league-specific intelligence  
+- **📊 Trade Tree & Value Flow Tracker**: Historical trade analysis and value tracking
+- **🪙 Token-Based Betting System**: 1000 tokens per week for friendly competition
+- **📱 Mobile-First Design**: Responsive UI optimized for phone usage
+- **⚡ Real-Time Updates**: Live odds and score updates every 30 seconds
+
+## 🛠️ Tech Stack
+
+### Backend
+- **FastAPI**: Python web framework
+- **Supabase**: PostgreSQL database with real-time subscriptions
+- **ESPN API**: Fantasy football data integration
+
+### Frontend  
+- **React.js**: Frontend framework with TypeScript
+- **Tailwind CSS**: Utility-first CSS framework
+- **React Query**: Data fetching and caching
 
 ## 🚀 Quick Start
 
-### 1. Setup
+### Prerequisites
+- Python 3.8+
+- Node.js 16+
+- Supabase account
+
+### Backend Setup
 ```bash
-# Clone or download this project
-cd fantasy-dashboard
-
-# Activate virtual environment
-source venv/bin/activate
-
-# Install dependencies (already done)
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
+cp .env.example .env
+# Edit .env with your Supabase credentials
+python setup_database.py
+uvicorn app.main:app --reload
 ```
 
-### 2. Authentication (Required for Private Leagues)
-Your league (ID: 637913) is private, so you need authentication cookies:
-
+### Frontend Setup
 ```bash
-# Run the cookie helper
-python src/get_cookies.py
-
-# Follow the instructions to get your ESPN cookies
-# Then update the .env file with your actual values
+cd frontend
+npm install
+cp .env.local.example .env.local
+# Edit .env.local with your Supabase credentials
+npm start
 ```
-
-### 3. Test Connection
-```bash
-# Test your setup
-python src/main.py
-
-# If successful, you'll see your league data!
-```
-
-## 📁 Project Structure
-
-```
-fantasy-dashboard/
-├── docs/                  # Documentation
-│   ├── 0-Overview/       # Project overview and goals
-│   ├── 2-Tech-Specs/     # Technical documentation
-│   └── ...
-├── src/                   # Source code
-│   ├── main.py           # Main application
-│   ├── api/              # ESPN API wrapper
-│   ├── analysis/         # Data analysis modules
-│   └── utils/            # Helper functions
-├── data/                  # Data storage
-├── notebooks/            # Jupyter notebooks
-└── requirements.txt      # Dependencies
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-Create a `.env` file with your ESPN cookies:
-```bash
-ESPN_S2=your_espn_s2_cookie_here
-SWID={your_swid_cookie_here}
-LEAGUE_ID=637913
-SEASON_YEAR=2025
-```
-
-### League Information
-- **League ID**: 637913
-- **Season**: 2025
-- **URL**: https://fantasy.espn.com/football/league/settings?leagueId=637913&seasonId=2025
 
 ## 📚 Documentation
 
-- **[Project Overview](docs/0-Overview/README.md)** - Goals and roadmap
-- **[Authentication Guide](docs/2-Tech-Specs/authentication-guide.md)** - How to get ESPN cookies
-- **[API Documentation](docs/2-Tech-Specs/)** - Technical specifications
+Comprehensive documentation is available in the `/docs` folder:
 
-## 🛠️ Development
+- **[Project Overview](docs/0-Overview/README.md)**: Project introduction and navigation
+- **[Product Roadmap](docs/1-Product/roadmap.md)**: Development phases and milestones
+- **[Technical Architecture](docs/2-Design/system-architecture.md)**: System design and components
+- **[Implementation Plan](docs/3-Development/implementation-plan.md)**: Step-by-step development guide
+- **[Quick Start Guide](docs/3-Development/quick-start-guide.md)**: Immediate next steps
 
-### Running Tests
-```bash
-# Test ESPN API connection
-python test_espn_api.py
+## 🎮 Usage
 
-# Debug league connection
-python src/debug_league.py
+1. **Connect Your League**: Link your ESPN fantasy league
+2. **View Odds Board**: See comprehensive matchup odds and probabilities
+3. **Place Token Bets**: Use your weekly 1000 tokens for friendly competition
+4. **Track FAAB Strategy**: Get intelligent waiver wire recommendations
+5. **Analyze Trades**: Explore historical trade data and value flow
+
+## 🏗️ Development Status
+
+**Current Phase**: Phase 1 - Core Infrastructure (Weeks 1-4)
+- ✅ Backend API setup with FastAPI
+- ✅ Frontend React application with Tailwind CSS
+- ✅ Token management system
+- ✅ Database schema design
+- 🔄 ESPN API integration (in progress)
+
+**Next Steps**: 
+- Live matchup odds board
+- Betting interface
+- FAAB predictor
+- Trade tracker
+
+## 📊 Project Structure
+
 ```
-
-### Adding Features
-1. Create new modules in `src/analysis/` or `src/reports/`
-2. Update `src/main.py` to include new functionality
-3. Document changes in `docs/`
-
-## 🔒 Security Notes
-
-- **Never commit cookies to version control**
-- **Use environment variables for sensitive data**
-- **Cookies expire periodically - refresh as needed**
-- **This is for personal use only**
-
-## 🎯 Roadmap
-
-### Phase 1: Core Data Access ✅
-- [x] ESPN API connection
-- [x] League information display
-- [x] Basic team and player data
-
-### Phase 2: Analysis & Automation
-- [ ] Weekly matchup analysis
-- [ ] Waiver wire suggestions
-- [ ] Performance reports
-- [ ] Data export options
-
-### Phase 3: Power User Features
-- [ ] Web dashboard
-- [ ] Discord/Slack integration
-- [ ] Automated alerts
-- [ ] Cross-league analysis
+fantasy-dashboard/
+├── backend/                 # FastAPI backend
+│   ├── app/                # Application code
+│   ├── requirements.txt    # Python dependencies
+│   └── setup_database.py   # Database setup script
+├── frontend/               # React frontend
+│   ├── src/               # Source code
+│   ├── public/            # Static assets
+│   └── package.json       # Node dependencies
+├── docs/                  # Comprehensive documentation
+│   ├── 0-Overview/        # Project overview
+│   ├── 1-Product/         # Product planning
+│   ├── 2-Design/          # Technical design
+│   ├── 3-Development/     # Development process
+│   ├── 4-Debugging/       # Debugging guides
+│   └── 5-Prompts/         # AI prompts
+└── README.md              # This file
+```
 
 ## 🤝 Contributing
 
-This is a personal project, but suggestions and improvements are welcome!
+This is a passion project for fantasy football enthusiasts. Contributions are welcome!
+
+1. Fork the repository
+2. Create a feature branch
+3. Follow the coding standards in the documentation
+4. Submit a pull request
 
 ## 📄 License
 
-MIT License - See LICENSE file for details
+This project is open source and available under the MIT License.
 
-## ⚠️ Disclaimer
+## 🎯 Target Audience
 
-This project uses an unofficial ESPN API. Use at your own risk and respect ESPN's terms of service.
+- Fantasy football power users and commissioners
+- Friend groups and dynasty leagues
+- Users who want deeper engagement and strategic insights
+- People who enjoy sports betting concepts without real money
+
+## 🔮 Future Vision
+
+- Cross-platform support (Yahoo, Sleeper)
+- Advanced analytics and machine learning
+- Mobile app (React Native or PWA)
+- League expansion beyond initial test group
+- Advanced social features and competitions
+
+---
+
+**Built with ❤️ for fantasy football enthusiasts**
