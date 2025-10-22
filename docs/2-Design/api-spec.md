@@ -10,7 +10,7 @@ This document defines the REST API specification for the Fantasy Football Compan
 
 ## Context
 
-The API is built using FastAPI and provides endpoints for odds calculation, betting operations, FAAB analysis, trade tracking, and user management. All endpoints support real-time updates and are designed for mobile-first consumption.
+The API is built using FastAPI and integrates with multiple free third-party services to provide comprehensive fantasy football analytics. It leverages The Odds API for sports betting odds, ESPN API for fantasy data (already working), NumPy/SciPy for Monte Carlo simulations, and Socket.IO for real-time communication. All endpoints support real-time updates and are designed for mobile-first consumption.
 
 ## Base Configuration
 

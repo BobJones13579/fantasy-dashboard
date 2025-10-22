@@ -10,10 +10,10 @@
 ## Core Purpose & Vision
 
 **What are you building?**
-A fantasy football companion platform that enhances private leagues with betting-style odds, strategic analytics, and social competition features. The app connects to existing fantasy platforms (ESPN, Yahoo, Sleeper) to generate custom odds, FAAB predictions, and trade analysis - all without handling real money.
+A fantasy football companion platform that enhances private leagues with betting-style odds, strategic analytics, and social competition features. Currently focused on ESPN integration (already working) with flexibility for future expansion to other platforms. Generates custom odds, FAAB predictions, and trade analysis - all without handling real money.
 
 **Who is this for?**
-Fantasy football enthusiasts, particularly friend groups and dynasty leagues who already play on ESPN, Yahoo, or Sleeper. Target users are power users and commissioners who want deeper engagement, strategic insights, and fun social competition within their existing leagues.
+Currently focused on League TB12 (10 members) as a passion project, with flexibility for future expansion to other ESPN leagues. Target users are power users and commissioners who want deeper engagement, strategic insights, and fun social competition within their existing leagues.
 
 **What problem does this solve?**
 - ESPN's built-in analytics and customization are limited
@@ -102,7 +102,7 @@ Combines the excitement of sports betting with fantasy football strategy, using 
 
 **Timeline:** 16 weeks to full launch (extended from 12 weeks)
 **Team Size:** 1-2 developers (solo passion project with potential for collaboration)
-**Budget:** Open source (minimal infrastructure costs, free tiers where possible)
+**Budget:** Free-first approach (minimal infrastructure costs, leveraging free tiers and open-source solutions)
 **Technical Constraints:** 
 - ESPN API is unofficial (espn-api library)
 - Read-only access (cannot make lineup changes)
@@ -117,18 +117,25 @@ Combines the excitement of sports betting with fantasy football strategy, using 
 - FastAPI (backend framework)
 - React.js (frontend framework)
 
-**Third-Party Integrations:**
-- ESPN league data synchronization
-- Real-time odds calculation and updates
-- Token balance tracking and management
-- Historical data storage and analysis
+**Third-Party Integrations (Free-First Approach):**
+- ESPN league data synchronization (already working, unofficial espn-api library)
+- Real-time odds calculation and updates (The Odds API - free tier)
+- Real-time communication (Socket.IO - open source)
+- Monte Carlo simulations (NumPy/SciPy - open source)
+- UI components (UUI - open source)
+- Performance optimization (FastAPI Cache + Redis free tier)
+
+**Note:** Currently focused on ESPN API only since it's already working. Yahoo Fantasy API integration can be added later for multi-platform support when expanding to other leagues.
+
+*For comprehensive integration specifications, see [docs/2-Design/third-party-integrations.md](docs/2-Design/third-party-integrations.md)*
 
 ## Development Approach
 
-**Development Methodology:** Agile with 4 development phases
+**Development Methodology:** Agile with 4 development phases, prioritizing free third-party solutions
 **Testing Strategy:** Unit tests, integration tests, user acceptance testing with League TB12
 **Code Quality Standards:** Clean, modular code with comprehensive documentation
 **Version Control:** Git with conventional commit format, automatic GitHub pushes
+**Integration Philosophy:** "Use existing solutions" approach - leverage proven libraries and APIs rather than building from scratch
 
 ## Deployment & Operations
 

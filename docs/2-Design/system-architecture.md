@@ -335,6 +335,18 @@ League Data → Processing → Storage → Real-Time Updates
 
 ## Integration Architecture
 
+### Third-Party Integrations
+
+**Comprehensive Integration Strategy**
+- **Monte Carlo Simulations**: NumPy/SciPy for advanced probability calculations
+- **Sports Betting Odds**: The Odds API for real-time odds data
+- **Fantasy Sports APIs**: Yahoo Fantasy API for cross-platform support
+- **Real-Time Communication**: Socket.IO for live updates
+- **UI Components**: UUI component library for professional interfaces
+- **Caching**: FastAPI Cache with Redis for performance optimization
+
+*For detailed integration specifications, see [third-party-integrations.md](./third-party-integrations.md)*
+
 ### ESPN API Integration
 
 **Data Access Pattern**

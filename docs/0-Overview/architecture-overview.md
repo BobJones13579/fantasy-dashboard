@@ -44,8 +44,9 @@ The Fantasy Football Companion App is built as a modern web application with rea
 - **Framework:** React.js with TypeScript
 - **Styling:** Tailwind CSS for mobile-first responsive design
 - **State Management:** React Query for server state, Context API for client state
-- **Real-Time:** Supabase real-time subscriptions
-- **Deployment:** Vercel with automatic deployments
+- **Real-Time:** Socket.IO for live updates, Supabase real-time subscriptions
+- **UI Components:** UUI component library (free, open source)
+- **Deployment:** Vercel with automatic deployments (free tier)
 
 ### Key Components
 
@@ -75,15 +76,20 @@ The Fantasy Football Companion App is built as a modern web application with rea
 - **Database:** Supabase (PostgreSQL) with real-time subscriptions
 - **Authentication:** Supabase Auth with JWT tokens
 - **ESPN Integration:** espn-api Python library
-- **Deployment:** Railway/Render with automatic scaling
+- **Sports Odds:** The Odds API (free tier) for real-time odds data
+- **Fantasy Data:** ESPN API (already working, unofficial espn-api library)
+- **Monte Carlo:** NumPy/SciPy (free, open source) for probability calculations
+- **Caching:** FastAPI Cache + Redis (free tier available)
+- **Deployment:** Railway/Render with automatic scaling (free tier)
 
 ### Core Services
 
 **Odds Engine Service**
-- Monte Carlo simulation for matchup outcomes
-- Real-time probability calculations
+- Monte Carlo simulation using NumPy/SciPy for matchup outcomes
+- Real-time probability calculations with The Odds API integration
 - Market intelligence and trend analysis
 - Upset alert detection and notifications
+- ESPN fantasy data integration (already working)
 
 **FAAB Analysis Service**
 - Historical bid data parsing and analysis

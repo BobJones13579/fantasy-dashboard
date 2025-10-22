@@ -14,8 +14,8 @@ The Fantasy Football Companion App is being developed as a passion project to en
 
 ## Development Phases
 
-### Phase 1: Core Infrastructure (Weeks 1-4)
-**Goal:** Build the foundation for the betting platform
+### Phase 1: Core Infrastructure & Third-Party Integration (Weeks 1-4)
+**Goal:** Build the foundation using free third-party solutions and integrate existing products
 
 #### Week 1: Token System
 - [ ] **Token Management**
@@ -30,38 +30,54 @@ The Fantasy Football Companion App is being developed as a passion project to en
   - [ ] Bets and transactions table
   - [ ] Markets and odds table
 
-#### Week 2: Betting Engine
-- [ ] **Bet Placement System**
-  - [ ] Bet validation and processing
-  - [ ] Odds calculation and updates
-  - [ ] Payout calculation
-  - [ ] Bet settlement system
+#### Week 2: Third-Party Integration Setup
+- [ ] **Monte Carlo Implementation**
+  - [ ] Replace custom Monte Carlo with NumPy/SciPy
+  - [ ] Implement industry-standard probability calculations
+  - [ ] Set up statistical analysis framework
 
-- [ ] **Market Types**
-  - [ ] Moneyline markets
-  - [ ] Spread markets
-  - [ ] Totals markets
-  - [ ] Basic player props
+- [ ] **Sports Odds Integration**
+  - [ ] Integrate The Odds API (free tier: 500 requests/month)
+  - [ ] Set up real-time odds data pipeline
+  - [ ] Implement odds caching with Redis
 
-#### Week 3: Core API
-- [ ] **REST API Endpoints**
-  - [ ] Market data endpoints
-  - [ ] Betting operations
-  - [ ] Token management
-  - [ ] User authentication
+- [ ] **ESPN API Optimization**
+  - [ ] Optimize existing ESPN API integration (already working)
+  - [ ] Enhance data processing and caching
+  - [ ] Implement advanced league data parsing
+  - [ ] Create robust error handling and fallbacks
 
-- [ ] **Real-time Updates**
-  - [ ] WebSocket implementation
-  - [ ] Live odds updates
-  - [ ] Game status tracking
-  - [ ] Bet settlement notifications
+<!-- Future: Multi-Platform Support
+- [ ] **Fantasy Data Expansion**
+  - [ ] Integrate Yahoo Fantasy API (free)
+  - [ ] Set up cross-platform data synchronization
+  - [ ] Implement unified data model for ESPN + Yahoo
+  - [ ] Create data transformation services
+-->
 
-#### Week 4: Basic Frontend
-- [ ] **Core Components**
+#### Week 3: Real-Time Communication & API
+- [ ] **Real-Time Integration**
+  - [ ] Implement Socket.IO for real-time communication (free, open source)
+  - [ ] Set up WebSocket connections for live updates
+  - [ ] Integrate with Supabase real-time subscriptions
+
+- [ ] **Core API Development**
+  - [ ] Market data endpoints with The Odds API integration
+  - [ ] Betting operations with token validation
+  - [ ] User authentication with Supabase Auth
+  - [ ] Caching implementation with FastAPI Cache
+
+#### Week 4: UI Component Integration
+- [ ] **Professional UI Components**
+  - [ ] Implement UUI component library (free, open source)
+  - [ ] Set up professional design system
+  - [ ] Create responsive mobile-first layout
+
+- [ ] **Frontend Foundation**
   - [ ] Header with league information
   - [ ] Navigation and routing
-  - [ ] User authentication
-  - [ ] Responsive design
+  - [ ] User authentication integration
+  - [ ] Real-time data connection setup
 
 ### Phase 2: Advanced Features (Weeks 5-8)
 **Goal:** Create a beautiful, functional web application with comprehensive odds display
