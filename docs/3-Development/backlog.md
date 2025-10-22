@@ -1,5 +1,9 @@
 # Feature Backlog
 
+## TLDR
+
+Prioritized backlog of features, enhancements, and improvements for the Fantasy Football Companion App, organized by development phases and user value.
+
 ## Purpose
 
 This document maintains the prioritized backlog of features, enhancements, and improvements for the Fantasy Football Companion App.
@@ -499,6 +503,6 @@ The backlog is organized by development phases and prioritized based on user val
 - **Creation Date:** 2024-01-15
 - **Last Updated:** 2024-01-15
 - **Next Review Date:** 2024-01-22
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

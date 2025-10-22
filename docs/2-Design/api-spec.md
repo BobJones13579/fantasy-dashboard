@@ -1,5 +1,9 @@
 # API Specification
 
+## TLDR
+
+Comprehensive REST API specification for the Fantasy Football Companion App, defining endpoints, request/response formats, authentication, and error handling for all backend services.
+
 ## Purpose
 
 This document defines the REST API specification for the Fantasy Football Companion App, including endpoints, request/response formats, authentication, and error handling.
@@ -714,9 +718,9 @@ X-RateLimit-Reset: 1642248000
 
 ## Source of Truth / Version
 
-- **Creation Date:** [Current Date]
-- **Last Updated:** [Current Date]
-- **Next Review Date:** [Next Review Date]
-- **Status:** Draft
+- **Creation Date:** 2024-01-15
+- **Last Updated:** 2024-01-15
+- **Next Review Date:** 2024-01-22
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

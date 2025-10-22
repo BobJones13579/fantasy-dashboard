@@ -1,5 +1,9 @@
 # Quick Start Guide
 
+## TLDR
+
+Step-by-step guide to get started with development of the Fantasy Football Companion App, covering prerequisites, setup, and initial development steps.
+
 ## Purpose
 
 This document provides a step-by-step guide to get started with development of the Fantasy Football Companion App.
@@ -291,6 +295,6 @@ You'll know you're ready to continue when:
 - **Creation Date:** 2024-01-15
 - **Last Updated:** 2024-01-15
 - **Next Review Date:** 2024-01-22
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

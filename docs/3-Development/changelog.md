@@ -1,5 +1,9 @@
 # Changelog
 
+## TLDR
+
+Comprehensive changelog tracking all changes, updates, and modifications made to the Fantasy Football Companion App throughout its development lifecycle using conventional commit format.
+
 ## Purpose
 
 This document tracks all changes, updates, and modifications made to the Fantasy Football Companion App throughout its development lifecycle.
@@ -302,6 +306,6 @@ This changelog follows the [Keep a Changelog](https://keepachangelog.com/) forma
 - **Creation Date:** [Current Date]
 - **Last Updated:** [Current Date]
 - **Next Review Date:** [Next Review Date]
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

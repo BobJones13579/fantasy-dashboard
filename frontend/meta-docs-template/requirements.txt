@@ -1,0 +1,13 @@
+# MkDocs and core dependencies
+mkdocs>=1.5.0
+mkdocs-material>=9.4.0
+
+# Plugins for enhanced functionality
+mkdocs-git-revision-date-localized-plugin>=1.2.0
+mkdocs-git-committers-plugin-2>=1.2.0
+
+# Markdown extensions
+pymdown-extensions>=10.0.0
+markdown>=3.4.0
+
+# For Mermaid diagrams support (included in pymdown-extensions)

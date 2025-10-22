@@ -1,5 +1,9 @@
 # Backend Development Prompts
 
+## TLDR
+
+AI prompts and guidance for backend development tasks in the Fantasy Football Companion App, covering FastAPI architecture, coding standards, and development patterns.
+
 ## Purpose
 
 This document contains AI prompts and guidance for backend development tasks in the Fantasy Football Companion App.
@@ -504,6 +508,6 @@ Please implement the security measures following these guidelines.
 - **Creation Date:** 2024-01-15
 - **Last Updated:** 2024-01-15
 - **Next Review Date:** 2024-01-22
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

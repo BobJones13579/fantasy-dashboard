@@ -1,5 +1,9 @@
 # Known Issues
 
+## TLDR
+
+Comprehensive tracking of all known issues, limitations, and workarounds for the Fantasy Football Companion App, helping users understand system limitations and available solutions.
+
 ## Purpose
 
 This document tracks all known issues, limitations, and workarounds for the Fantasy Football Companion App.
@@ -405,6 +409,6 @@ PWA installation may not work on all mobile devices or browsers, particularly ol
 - **Creation Date:** 2024-01-15
 - **Last Updated:** 2024-01-15
 - **Next Review Date:** 2024-01-22
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

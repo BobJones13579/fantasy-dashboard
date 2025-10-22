@@ -1,5 +1,9 @@
 # Fantasy Football Companion App - Project Overview
 
+## TLDR
+
+Central navigation and introduction to the Fantasy Football Companion App project documentation, providing overview of the project, goals, and complete documentation ecosystem navigation.
+
 ## Purpose
 
 This document serves as the central navigation and introduction to the Fantasy Football Companion App project documentation. It provides an overview of the project, its goals, and how to navigate the complete documentation ecosystem.
@@ -112,9 +116,9 @@ The Fantasy Football Companion App is a passion project designed to enhance priv
 
 ## Source of Truth / Version
 
-- **Creation Date:** [Current Date]
-- **Last Updated:** [Current Date]
-- **Next Review Date:** [Next Review Date]
-- **Status:** Draft
+- **Creation Date:** 2024-01-15
+- **Last Updated:** 2024-01-15
+- **Next Review Date:** 2024-01-22
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

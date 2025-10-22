@@ -1,5 +1,9 @@
 # Project Milestones
 
+## TLDR
+
+Comprehensive tracking of major milestones, deadlines, and key deliverables for the Fantasy Football Companion App development project across 4 phases over 16 weeks.
+
 ## Purpose
 
 This document tracks the major milestones, deadlines, and key deliverables for the Fantasy Football Companion App development project.
@@ -485,6 +489,6 @@ Week 13-16: Phase 4 - Polish & Optimization
 - **Creation Date:** [Current Date]
 - **Last Updated:** [Current Date]
 - **Next Review Date:** [Next Review Date]
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

@@ -1,0 +1,212 @@
+site_name: Meta Docs Template
+site_description: A comprehensive documentation framework for AI-human collaboration workflows
+site_url: https://your-domain.com
+repo_url: https://github.com/your-username/meta-docs-template
+repo_name: meta-docs-template
+
+# Configuration
+theme:
+  name: material
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.indexes
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - content.action.view
+    - content.tabs.link
+    - content.footnote.tooltips
+    - header.autohide
+    - announce.dismiss
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+# Plugins
+plugins:
+  - search:
+      lang: en
+  # Git plugins disabled until git repository is initialized
+  # - git-revision-date-localized:
+  #     enable_creation_date: true
+  #     enable_git_follow: false
+  # - git-committers:
+  #     repository: meta-docs-template
+  #     branch: main
+
+# Markdown extensions
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.critic
+  - admonition
+  - footnotes
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+# Navigation
+nav:
+  - Home: index.md
+  - Meta Documentation:
+    - Foundations:
+      - meta/0-Foundations/README.md
+      - AI Collaboration Guide: meta/0-Foundations/ai-collaboration-guide.md
+      - Doc Writing Guide: meta/0-Foundations/doc-writing-guide.md
+      - Docs Layer Spec: meta/0-Foundations/docs-layer-spec.md
+      - File Type Reference: meta/0-Foundations/file-type-reference.md
+      - Glossary: meta/0-Foundations/glossary-of-meta-terms.md
+      - Philosophy: meta/0-Foundations/philosophy.md
+    - Frameworks:
+      - meta/1-Frameworks/README.md
+      - Changelog Template: meta/1-Frameworks/changelog-template.md
+      - Design Template: meta/1-Frameworks/design-template.md
+      - PRD Template: meta/1-Frameworks/prd-template.md
+      - Prompt Template: meta/1-Frameworks/prompt-template.md
+      - Session Template: meta/1-Frameworks/session-template.md
+      - Testing Template: meta/1-Frameworks/testing-template.md
+      - Docs Skeleton: 
+        - Overview: meta/1-Frameworks/docs-skeleton/README.md
+        - Architecture Overview: meta/1-Frameworks/docs-skeleton/0-Overview/architecture-overview.md
+        - Coding Standards: meta/1-Frameworks/docs-skeleton/0-Overview/coding-standards.md
+        - Glossary: meta/1-Frameworks/docs-skeleton/0-Overview/glossary.md
+        - Product:
+          - Roadmap: meta/1-Frameworks/docs-skeleton/1-Product/roadmap.md
+          - PRDs: meta/1-Frameworks/docs-skeleton/1-Product/prds/README.md
+        - Design:
+          - API Spec: meta/1-Frameworks/docs-skeleton/2-Design/api-spec.md
+          - Backend: meta/1-Frameworks/docs-skeleton/2-Design/backend.md
+          - Data Models: meta/1-Frameworks/docs-skeleton/2-Design/data-models.md
+          - Frontend: meta/1-Frameworks/docs-skeleton/2-Design/frontend.md
+          - Integrations: meta/1-Frameworks/docs-skeleton/2-Design/integrations.md
+          - System Architecture: meta/1-Frameworks/docs-skeleton/2-Design/system-architecture.md
+        - Development:
+          - Architecture Decisions: meta/1-Frameworks/docs-skeleton/3-Development/architecture-decisions.md
+          - Backlog: meta/1-Frameworks/docs-skeleton/3-Development/backlog.md
+          - Changelog: meta/1-Frameworks/docs-skeleton/3-Development/changelog.md
+          - Milestones: meta/1-Frameworks/docs-skeleton/3-Development/milestones.md
+          - Release Checklist: meta/1-Frameworks/docs-skeleton/3-Development/release-checklist.md
+          - Sprint Log: meta/1-Frameworks/docs-skeleton/3-Development/sprint-log.md
+          - Release Notes: meta/1-Frameworks/docs-skeleton/3-Development/release-notes/README.md
+        - Debugging:
+          - Debug Playbook: meta/1-Frameworks/docs-skeleton/4-Debugging/debug-playbook.md
+          - Error Log: meta/1-Frameworks/docs-skeleton/4-Debugging/error-log.md
+          - Known Issues: meta/1-Frameworks/docs-skeleton/4-Debugging/known-issues.md
+        - Prompts:
+          - Backend Prompts: meta/1-Frameworks/docs-skeleton/5-Prompts/backend-prompts.md
+          - Debugging Prompts: meta/1-Frameworks/docs-skeleton/5-Prompts/debugging-prompts.md
+          - Frontend Prompts: meta/1-Frameworks/docs-skeleton/5-Prompts/frontend-prompts.md
+          - Refactor Prompts: meta/1-Frameworks/docs-skeleton/5-Prompts/refactor-prompts.md
+          - Session Notes: meta/1-Frameworks/docs-skeleton/5-Prompts/session-notes/README.md
+    - Operations:
+      - meta/2-Operations/README.md
+      - AI Behavior Protocols: meta/2-Operations/ai-behavior-protocols.md
+      - Generation Rules: meta/2-Operations/generation-rules.md
+      - Orchestration Guide: meta/2-Operations/orchestration-guide.md
+      - Chain Prompts:
+        - Generate Docs Skeleton: meta/2-Operations/chain-prompts/generate-docs-skeleton.md
+        - Generate Feature Pack: meta/2-Operations/chain-prompts/generate-feature-pack.md
+        - Rebuild Summary Doc: meta/2-Operations/chain-prompts/rebuild-summary-doc.md
+        - Refresh Context Slice: meta/2-Operations/chain-prompts/refresh-context-slice.md
+        - Update Design Doc: meta/2-Operations/chain-prompts/update-design-doc.md
+    - Governance:
+      - meta/3-Governance/README.md
+      - Evolution Guide: meta/3-Governance/evolution-guide.md
+      - Maintenance Checklist: meta/3-Governance/maintenance-checklist.md
+      - Meta Changelog: meta/3-Governance/meta-changelog.md
+    - Adaptations:
+      - meta/4-Adaptations/README.md
+      - Naming Conventions: meta/4-Adaptations/naming-conventions.md
+      - Project Adaptations: meta/4-Adaptations/project-adaptations.md
+      - Recurring Component Rules: meta/4-Adaptations/recurring-component-rules.md
+
+# Extra configuration
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/your-username
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/your-username
+
+# Copyright
+copyright: Copyright &copy; 2024 Meta Docs Template Contributors
+
+# Validation
+validation:
+  nav:
+    omitted_files: info
+    not_found: warn
+    absolute_links: info
+  links:
+    not_found: warn
+    anchors: info
+    absolute_links: info
+    unrecognized_links: info
+
+# Build configuration
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+strict: false
+
+# Watch configuration for development
+watch:
+  - docs
+  - meta

@@ -1,5 +1,9 @@
 # Debugging and Troubleshooting Prompts
 
+## TLDR
+
+AI prompts and guidance for debugging and troubleshooting issues in the Fantasy Football Companion App, providing systematic approaches to identify root causes and implement solutions.
+
 ## Purpose
 
 This document contains AI prompts and guidance for debugging and troubleshooting issues in the Fantasy Football Companion App.
@@ -520,6 +524,6 @@ Please set up monitoring and alerting following these requirements.
 - **Creation Date:** 2024-01-15
 - **Last Updated:** 2024-01-15
 - **Next Review Date:** 2024-01-22
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

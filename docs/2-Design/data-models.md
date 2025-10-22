@@ -1,5 +1,9 @@
 # Data Models
 
+## TLDR
+
+Comprehensive data models, schemas, and relationships for the Fantasy Football Companion App, defining how data is structured, stored, and accessed across the system.
+
 ## Purpose
 
 This document defines the data models, schemas, and relationships used throughout the Fantasy Football Companion App. It provides a comprehensive overview of how data is structured, stored, and accessed across the system.
@@ -556,6 +560,6 @@ const CACHE_TTL = {
 - **Creation Date:** [Current Date]
 - **Last Updated:** [Current Date]
 - **Next Review Date:** [Next Review Date]
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

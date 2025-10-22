@@ -1,5 +1,9 @@
 # Architecture Decision Records (ADRs)
 
+## TLDR
+
+Historical record of all significant architectural decisions made during the development of the Fantasy Football Companion App, including context, rationale, and consequences.
+
 ## Purpose
 
 This document tracks all significant architectural decisions made during the development of the Fantasy Football Companion App, including the context, decision rationale, and consequences.
@@ -330,6 +334,6 @@ Implement comprehensive error handling:
 - **Creation Date:** 2024-01-15
 - **Last Updated:** 2024-01-15
 - **Next Review Date:** 2024-02-15
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

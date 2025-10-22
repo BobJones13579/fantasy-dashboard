@@ -1,5 +1,9 @@
 # Coding Standards and Conventions
 
+## TLDR
+
+Comprehensive coding standards, conventions, and best practices for the Fantasy Football Companion App development team, ensuring code consistency, maintainability, and quality across the entire codebase.
+
 ## Purpose
 
 This document establishes coding standards, conventions, and best practices for the Fantasy Football Companion App development team. These standards ensure code consistency, maintainability, and quality across the entire codebase.
@@ -476,9 +480,9 @@ Fixes #456
 
 ## Source of Truth / Version
 
-- **Creation Date:** [Current Date]
-- **Last Updated:** [Current Date]
-- **Next Review Date:** [Next Review Date]
-- **Status:** Draft
+- **Creation Date:** 2024-01-15
+- **Last Updated:** 2024-01-15
+- **Next Review Date:** 2024-01-22
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

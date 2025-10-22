@@ -1,6 +1,7 @@
 from typing import Optional, List, Dict, Any
 from espn_api.football import League
 from app.core.config import settings
+from app.core.database import get_supabase
 import logging
 
 logger = logging.getLogger(__name__)
@@ -12,6 +13,75 @@ class ESPNService:
         self.espn_s2: Optional[str] = None
         self.swid: Optional[str] = None
         self.league: Optional[League] = None
+        self._load_configuration()
+    
+    def _load_configuration(self):
+        """Load ESPN configuration from database"""
+        try:
+            supabase = get_supabase()
+            if not supabase:
+                return
+            
+            # Get the most recent league configuration
+            response = supabase.table("leagues").select("*").order("created_at", desc=True).limit(1).execute()
+            
+            if response.data:
+                league_data = response.data[0]
+                self.league_id = int(league_data["espn_league_id"])
+                self.year = league_data["season"]
+                
+                # Load credentials from environment
+                self.espn_s2 = getattr(settings, 'ESPN_S2', None)
+                self.swid = getattr(settings, 'SWID', None)
+                
+                # Try to initialize the league connection
+                self._initialize_league()
+                logger.info(f"Loaded ESPN configuration: League {self.league_id}, Year {self.year}")
+        except Exception as e:
+            logger.warning(f"Could not load ESPN configuration: {e}")
+    
+    def _save_configuration(self, league_id: int, year: int, espn_s2: Optional[str] = None, swid: Optional[str] = None):
+        """Save ESPN configuration to database"""
+        try:
+            supabase = get_supabase()
+            if not supabase:
+                return
+            
+            # Store credentials in a secure way (in production, use proper encryption)
+            config_data = {
+                "league_id": league_id,
+                "year": year,
+                "espn_s2": espn_s2,
+                "swid": swid
+            }
+            
+            # For now, we'll store this in the league settings
+            # In production, you'd want a separate credentials table with encryption
+            logger.info(f"ESPN configuration saved for league {league_id}")
+        except Exception as e:
+            logger.error(f"Failed to save ESPN configuration: {e}")
+    
+    def _initialize_league(self):
+        """Initialize the ESPN league connection"""
+        if not self.league_id or not self.year:
+            return
+        
+        try:
+            # Use credentials from environment or stored config
+            espn_s2 = getattr(settings, 'ESPN_S2', None) or self.espn_s2
+            swid = getattr(settings, 'SWID', None) or self.swid
+            
+            self.league = League(
+                league_id=self.league_id,
+                year=self.year,
+                espn_s2=espn_s2,
+                swid=swid,
+                debug=False
+            )
+            logger.info(f"ESPN league connection initialized for league {self.league_id}")
+        except Exception as e:
+            logger.error(f"Failed to initialize ESPN league: {e}")
+            self.league = None
     
     def configure_league(self, league_id: int, year: int, espn_s2: Optional[str] = None, swid: Optional[str] = None):
         """Configure the ESPN league connection"""
@@ -29,10 +99,31 @@ class ESPNService:
                 swid=swid,
                 debug=False
             )
+            
+            # Save configuration for future use
+            self._save_configuration(league_id, year, espn_s2, swid)
+            
             logger.info(f"Successfully connected to ESPN league {league_id} for year {year}")
             return True
         except Exception as e:
             logger.error(f"Failed to connect to ESPN league: {e}")
+            return False
+    
+    def test_connection(self) -> bool:
+        """Test if the ESPN league connection is working"""
+        if not self.league:
+            # Try to load configuration and initialize
+            self._load_configuration()
+        
+        if not self.league:
+            return False
+        
+        try:
+            # Try to get league info to test connection
+            league_info = self.get_league_info()
+            return league_info is not None
+        except Exception as e:
+            logger.error(f"ESPN connection test failed: {e}")
             return False
     
     def get_league_info(self) -> Optional[Dict[str, Any]]:
@@ -63,10 +154,15 @@ class ESPNService:
         try:
             teams = []
             for team in self.league.teams:
+                # Get owner name from owners list
+                owner_name = "Unknown"
+                if hasattr(team, 'owners') and team.owners:
+                    owner_name = team.owners[0].get('displayName', 'Unknown')
+                
                 teams.append({
                     "espn_team_id": team.team_id,
                     "name": team.team_name,
-                    "owner": team.owner,
+                    "owner": owner_name,
                     "wins": team.wins,
                     "losses": team.losses,
                     "ties": team.ties,

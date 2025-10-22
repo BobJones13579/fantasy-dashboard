@@ -1,5 +1,9 @@
 # Backend Architecture
 
+## TLDR
+
+Backend architecture for the Fantasy Football Companion App using FastAPI (Python) with Supabase, designed to handle fantasy football league data, betting operations, and strategic intelligence features.
+
 ## Purpose
 
 This document outlines the backend architecture for the Fantasy Football Companion App, including service structure, API design, and infrastructure components.
@@ -143,6 +147,6 @@ class FAABAnalyzer:
 - **Creation Date:** 2024-01-15
 - **Last Updated:** 2024-01-15
 - **Next Review Date:** 2024-01-22
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

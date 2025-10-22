@@ -1,5 +1,9 @@
 # Project Glossary
 
+## TLDR
+
+Comprehensive glossary defining project-specific terminology, acronyms, and concepts used throughout the Fantasy Football Companion App documentation and codebase.
+
 ## Purpose
 
 This document defines project-specific terminology, acronyms, and concepts used throughout the Fantasy Football Companion App documentation and codebase.
@@ -199,9 +203,9 @@ This glossary ensures consistent understanding of domain-specific terms, technic
 
 ## Source of Truth / Version
 
-- **Creation Date:** [Current Date]
-- **Last Updated:** [Current Date]
-- **Next Review Date:** [Next Review Date]
-- **Status:** Draft
+- **Creation Date:** 2024-01-15
+- **Last Updated:** 2024-01-15
+- **Next Review Date:** 2024-01-22
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

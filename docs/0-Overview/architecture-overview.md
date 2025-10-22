@@ -1,5 +1,9 @@
 # System Architecture Overview
 
+## TLDR
+
+High-level overview of the Fantasy Football Companion App system architecture, including key components, data flow, and integration points for the modern web application with real-time capabilities.
+
 ## Purpose
 
 This document provides a high-level overview of the Fantasy Football Companion App system architecture, including key components, data flow, and integration points.
@@ -231,9 +235,9 @@ League Data → Processing → Storage → Real-Time Updates
 
 ## Source of Truth / Version
 
-- **Creation Date:** [Current Date]
-- **Last Updated:** [Current Date]
-- **Next Review Date:** [Next Review Date]
-- **Status:** Draft
+- **Creation Date:** 2024-01-15
+- **Last Updated:** 2024-01-15
+- **Next Review Date:** 2024-01-22
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

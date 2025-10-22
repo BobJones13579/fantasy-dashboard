@@ -1,5 +1,9 @@
 # Debug Playbook
 
+## TLDR
+
+Comprehensive guide for debugging issues, troubleshooting problems, and resolving common errors in the Fantasy Football Companion App with step-by-step procedures and escalation paths.
+
 ## Purpose
 
 This document provides a comprehensive guide for debugging issues, troubleshooting problems, and resolving common errors in the Fantasy Football Companion App.
@@ -691,6 +695,6 @@ logger.warning("Slow query detected", query="SELECT * FROM matchups", duration=2
 - **Creation Date:** [Current Date]
 - **Last Updated:** [Current Date]
 - **Next Review Date:** [Next Review Date]
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

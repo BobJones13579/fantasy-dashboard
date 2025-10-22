@@ -1,5 +1,9 @@
 # Code Refactoring Prompts
 
+## TLDR
+
+AI prompts and guidance for code refactoring tasks in the Fantasy Football Companion App, covering refactoring principles, opportunity identification, and implementation while maintaining code quality.
+
 ## Purpose
 
 This document contains AI prompts and guidance for code refactoring tasks in the Fantasy Football Companion App.
@@ -530,6 +534,6 @@ Please refactor the TypeScript code following these requirements.
 - **Creation Date:** 2024-01-15
 - **Last Updated:** 2024-01-15
 - **Next Review Date:** 2024-01-22
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

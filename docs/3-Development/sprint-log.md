@@ -1,5 +1,9 @@
 # Sprint Log
 
+## TLDR
+
+Comprehensive tracking of sprint planning, execution, and retrospectives for the Fantasy Football Companion App development process across 16 weeks and 4 phases.
+
 ## Purpose
 
 This document tracks sprint planning, execution, and retrospectives for the Fantasy Football Companion App development process.
@@ -509,6 +513,6 @@ The project follows a 16-week development timeline with 4 phases, each containin
 - **Creation Date:** 2024-01-15
 - **Last Updated:** 2024-01-15
 - **Next Review Date:** 2024-01-22
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0

@@ -1,5 +1,9 @@
 # Frontend Development Prompts
 
+## TLDR
+
+AI prompts and guidance for frontend development tasks in the Fantasy Football Companion App, covering React.js architecture, coding standards, and development patterns.
+
 ## Purpose
 
 This document contains AI prompts and guidance for frontend development tasks in the Fantasy Football Companion App.
@@ -415,6 +419,6 @@ Please implement the error boundary following these guidelines.
 - **Creation Date:** 2024-01-15
 - **Last Updated:** 2024-01-15
 - **Next Review Date:** 2024-01-22
-- **Status:** Draft
+- **Status:** Active
 - **Maintainer:** Development Team
 - **Version:** 1.0.0
