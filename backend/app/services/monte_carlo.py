@@ -1,5 +1,5 @@
-import random
-import statistics
+import numpy as np
+from scipy import stats
 from typing import Dict, Any, List, Tuple
 from dataclasses import dataclass
 import logging
@@ -18,16 +18,15 @@ class SimulationResult:
     team2_std_dev: float
 
 class MonteCarloSimulator:
-    """Monte Carlo simulation engine for fantasy football matchups"""
+    """Monte Carlo simulation engine for fantasy football matchups using NumPy/SciPy"""
     
     def __init__(self, iterations: int = 10000):
         self.iterations = iterations
-        self.random_seed = None
+        self.rng = np.random.default_rng()
     
     def set_seed(self, seed: int):
         """Set random seed for reproducible results"""
-        self.random_seed = seed
-        random.seed(seed)
+        self.rng = np.random.default_rng(seed)
     
     def simulate_matchup(self, team1_stats: Dict[str, Any], team2_stats: Dict[str, Any]) -> SimulationResult:
         """
@@ -41,42 +40,28 @@ class MonteCarloSimulator:
             SimulationResult with win probability and statistics
         """
         try:
-            # Set seed if provided
-            if self.random_seed:
-                random.seed(self.random_seed)
-            
             # Extract team statistics
             team1_avg = self._extract_team_average(team1_stats)
             team1_std = self._extract_team_std_dev(team1_stats)
             team2_avg = self._extract_team_average(team2_stats)
             team2_std = self._extract_team_std_dev(team2_stats)
             
-            # Run simulations
-            team1_scores = []
-            team2_scores = []
-            team1_wins = 0
+            # Generate random scores using NumPy (vectorized for performance)
+            team1_scores = np.maximum(0, self.rng.normal(team1_avg, team1_std, self.iterations))
+            team2_scores = np.maximum(0, self.rng.normal(team2_avg, team2_std, self.iterations))
             
-            for _ in range(self.iterations):
-                # Generate random scores based on normal distribution
-                team1_score = max(0, random.normalvariate(team1_avg, team1_std))
-                team2_score = max(0, random.normalvariate(team2_avg, team2_std))
-                
-                team1_scores.append(team1_score)
-                team2_scores.append(team2_score)
-                
-                # Count wins
-                if team1_score > team2_score:
-                    team1_wins += 1
+            # Count wins using NumPy (vectorized)
+            team1_wins = np.sum(team1_scores > team2_scores)
             
-            # Calculate results
+            # Calculate results using NumPy
             win_probability = team1_wins / self.iterations
-            team1_avg_score = statistics.mean(team1_scores)
-            team2_avg_score = statistics.mean(team2_scores)
-            team1_std_dev = statistics.stdev(team1_scores)
-            team2_std_dev = statistics.stdev(team2_scores)
+            team1_avg_score = float(np.mean(team1_scores))
+            team2_avg_score = float(np.mean(team2_scores))
+            team1_std_dev = float(np.std(team1_scores))
+            team2_std_dev = float(np.std(team2_scores))
             
-            # Calculate confidence interval (95%)
-            confidence_interval = self._calculate_confidence_interval(win_probability, self.iterations)
+            # Calculate confidence interval using SciPy
+            confidence_interval = self._calculate_confidence_interval_scipy(win_probability, self.iterations)
             
             return SimulationResult(
                 win_probability=win_probability,
@@ -137,23 +122,30 @@ class MonteCarloSimulator:
             logger.warning(f"Error extracting team std dev: {e}")
             return 15.0
     
-    def _calculate_confidence_interval(self, probability: float, iterations: int) -> Tuple[float, float]:
-        """Calculate 95% confidence interval for win probability"""
+    def _calculate_confidence_interval_scipy(self, probability: float, iterations: int) -> Tuple[float, float]:
+        """Calculate 95% confidence interval for win probability using SciPy"""
         try:
-            # Standard error for proportion
-            se = (probability * (1 - probability) / iterations) ** 0.5
+            # Use SciPy for more accurate confidence interval calculation
+            alpha = 0.05  # 95% confidence interval
+            successes = int(probability * iterations)
             
-            # 95% confidence interval (z = 1.96)
-            margin_of_error = 1.96 * se
+            # Use binomial confidence interval
+            lower_bound, upper_bound = stats.binom.interval(1 - alpha, iterations, successes / iterations)
             
-            lower_bound = max(0, probability - margin_of_error)
-            upper_bound = min(1, probability + margin_of_error)
+            # Convert back to proportions
+            lower_bound = max(0.0, lower_bound / iterations)
+            upper_bound = min(1.0, upper_bound / iterations)
             
             return (lower_bound, upper_bound)
             
         except Exception as e:
-            logger.warning(f"Error calculating confidence interval: {e}")
-            return (max(0, probability - 0.05), min(1, probability + 0.05))
+            logger.warning(f"Error calculating confidence interval with SciPy: {e}")
+            # Fallback to simple calculation
+            se = (probability * (1 - probability) / iterations) ** 0.5
+            margin_of_error = 1.96 * se
+            lower_bound = max(0, probability - margin_of_error)
+            upper_bound = min(1, probability + margin_of_error)
+            return (lower_bound, upper_bound)
     
     def simulate_season_outcomes(self, team_stats: Dict[str, Any], remaining_games: int) -> Dict[str, Any]:
         """
@@ -174,7 +166,7 @@ class MonteCarloSimulator:
             current_wins = team_stats.get('wins', 0)
             current_losses = team_stats.get('losses', 0)
             
-            # Simulate remaining games
+            # Simulate remaining games using NumPy (vectorized)
             outcomes = {
                 'playoff_probability': 0.0,
                 'championship_probability': 0.0,
@@ -182,41 +174,26 @@ class MonteCarloSimulator:
                 'win_distribution': {}
             }
             
-            total_wins = 0
-            playoff_count = 0
-            championship_count = 0
+            # Generate all scores at once using NumPy
+            team_scores = np.maximum(0, self.rng.normal(team_avg, team_std, (self.iterations, remaining_games)))
+            opponent_scores = np.maximum(0, self.rng.normal(100.0, 15.0, (self.iterations, remaining_games)))
             
-            for _ in range(self.iterations):
-                season_wins = current_wins
-                
-                # Simulate remaining games
-                for _ in range(remaining_games):
-                    # Generate random opponent score (league average)
-                    opponent_score = random.normalvariate(100.0, 15.0)
-                    team_score = max(0, random.normalvariate(team_avg, team_std))
-                    
-                    if team_score > opponent_score:
-                        season_wins += 1
-                
-                total_wins += season_wins
-                
-                # Check playoff qualification (assume 6 teams make playoffs)
-                if season_wins >= 7:  # Example threshold
-                    playoff_count += 1
-                    
-                    # Check championship (simplified)
-                    if season_wins >= 10:
-                        championship_count += 1
-                
-                # Track win distribution
-                if season_wins not in outcomes['win_distribution']:
-                    outcomes['win_distribution'][season_wins] = 0
-                outcomes['win_distribution'][season_wins] += 1
+            # Count wins for each iteration (vectorized)
+            remaining_wins = np.sum(team_scores > opponent_scores, axis=1)
+            season_wins = current_wins + remaining_wins
             
-            # Calculate probabilities
+            # Calculate probabilities using NumPy
+            playoff_count = np.sum(season_wins >= 7)
+            championship_count = np.sum(season_wins >= 10)
+            
             outcomes['playoff_probability'] = playoff_count / self.iterations
             outcomes['championship_probability'] = championship_count / self.iterations
-            outcomes['expected_final_wins'] = total_wins / self.iterations
+            outcomes['expected_final_wins'] = float(np.mean(season_wins))
+            
+            # Calculate win distribution
+            unique_wins, counts = np.unique(season_wins, return_counts=True)
+            for wins, count in zip(unique_wins, counts):
+                outcomes['win_distribution'][int(wins)] = int(count)
             
             return outcomes
             

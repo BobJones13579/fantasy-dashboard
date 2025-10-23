@@ -5,3 +5,9 @@ python-dotenv==1.1.1
 pydantic==2.12.3
 email-validator==2.1.1
 espn_api==0.45.1
+numpy>=1.24.0
+scipy>=1.10.0
+python-socketio>=5.10.0
+fastapi-cache>=0.2.0
+redis>=5.0.0
+requests>=2.31.0
