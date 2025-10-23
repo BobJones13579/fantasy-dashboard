@@ -60,3 +60,36 @@ async def test_free_services() -> Dict[str, Any]:
     except Exception as e:
         logger.error(f"Error testing free services: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@router.get("/test-services-quick")
+async def test_free_services_quick() -> Dict[str, Any]:
+    """
+    Quick test of free services without making external API calls
+    """
+    try:
+        # Return a quick status check without making external calls
+        return {
+            "success": True,
+            "test_results": {
+                "thesportsdb": {
+                    "status": "available",
+                    "note": "Completely free, unlimited requests (not tested)",
+                    "cost": "free"
+                },
+                "api_sports": {
+                    "status": "no_key" if not free_odds_service.api_sports_key else "available",
+                    "note": "Free tier: 100 requests/day limited (not tested)",
+                    "cost": "free"
+                },
+                "odds_api": {
+                    "status": "no_key" if not free_odds_service.odds_api_key else "available", 
+                    "note": "Free tier: 500 requests/month (not tested)",
+                    "cost": "free"
+                }
+            },
+            "message": "Quick service status check completed (no external calls made)",
+            "note": "Use /test-services for full testing with external API calls"
+        }
+    except Exception as e:
+        logger.error(f"Error in quick test: {e}")
+        raise HTTPException(status_code=500, detail=str(e))

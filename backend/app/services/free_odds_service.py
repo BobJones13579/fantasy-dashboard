@@ -28,7 +28,7 @@ class FreeOddsService:
         self.api_sports_key = os.getenv("API_SPORTS_KEY")  # RapidAPI key
         self.api_sports_base_url = "https://v1.american-football.api-sports.io"
         
-        self.session = httpx.AsyncClient()
+        self.session = httpx.AsyncClient(timeout=10.0)  # 10 second timeout for all requests
         self.request_counts = {
             'odds_api': 0,
             'api_sports': 0,
@@ -288,12 +288,21 @@ class FreeOddsService:
         """Test all free services to see which ones are working"""
         results = {}
         
-        # Test TheSportsDB
+        # Test TheSportsDB with timeout
         try:
-            sportsdb_data = await self._get_sportsdb_nfl_data()
+            sportsdb_data = await asyncio.wait_for(
+                self._get_sportsdb_nfl_data(), 
+                timeout=10.0  # 10 second timeout
+            )
             results['thesportsdb'] = {
                 'status': 'working',
                 'data_available': bool(sportsdb_data),
+                'note': 'Completely free, unlimited requests'
+            }
+        except asyncio.TimeoutError:
+            results['thesportsdb'] = {
+                'status': 'timeout',
+                'error': 'Request timed out after 10 seconds',
                 'note': 'Completely free, unlimited requests'
             }
         except Exception as e:
@@ -303,13 +312,22 @@ class FreeOddsService:
                 'note': 'Completely free, unlimited requests'
             }
 
-        # Test API-Sports (if key available)
+        # Test API-Sports (if key available) with timeout
         if self.api_sports_key:
             try:
-                api_sports_data = await self._get_api_sports_nfl_odds()
+                api_sports_data = await asyncio.wait_for(
+                    self._get_api_sports_nfl_odds(), 
+                    timeout=10.0  # 10 second timeout
+                )
                 results['api_sports'] = {
                     'status': 'working',
                     'data_available': bool(api_sports_data),
+                    'note': 'Free tier: 100 requests/day limited'
+                }
+            except asyncio.TimeoutError:
+                results['api_sports'] = {
+                    'status': 'timeout',
+                    'error': 'Request timed out after 10 seconds',
                     'note': 'Free tier: 100 requests/day limited'
                 }
             except Exception as e:
@@ -324,13 +342,22 @@ class FreeOddsService:
                 'note': 'Requires RapidAPI key (free tier available)'
             }
 
-        # Test The Odds API (if key available)
+        # Test The Odds API (if key available) with timeout
         if self.odds_api_key:
             try:
-                odds_api_data = await self._get_odds_api_nfl_data()
+                odds_api_data = await asyncio.wait_for(
+                    self._get_odds_api_nfl_data(), 
+                    timeout=10.0  # 10 second timeout
+                )
                 results['odds_api'] = {
                     'status': 'working',
                     'data_available': bool(odds_api_data),
+                    'note': 'Free tier: 500 requests/month'
+                }
+            except asyncio.TimeoutError:
+                results['odds_api'] = {
+                    'status': 'timeout',
+                    'error': 'Request timed out after 10 seconds',
                     'note': 'Free tier: 500 requests/month'
                 }
             except Exception as e:
