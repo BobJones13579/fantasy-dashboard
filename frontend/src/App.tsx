@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/layout/Header';
 import { TokenBalance } from './components/features/TokenBalance';
-import { OddsBoard } from './components/features/OddsBoard';
-import { BettingInterface } from './components/features/BettingInterface';
+import { OddsBoard } from './components/OddsBoard/OddsBoard';
+import { BettingInterface } from './components/BettingInterface/BettingInterface';
+import { FAABPredictor } from './components/FAABPredictor/FAABPredictor';
 
 function App() {
   const [currentWeek, setCurrentWeek] = useState(1);
@@ -19,20 +20,53 @@ function App() {
     switch (activeTab) {
       case 'odds':
         return (
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold mb-4">Live Matchup Odds</h2>
-            <OddsBoard />
-          </div>
+          <OddsBoard 
+            leagueId="637913" // League TB12 ID
+            userId="test-user-1"
+            matchups={[
+              {
+                id: "matchup-1",
+                team1: "Team Alpha",
+                team2: "Team Beta",
+                team1Odds: -150,
+                team2Odds: +130,
+                spread: -3.5,
+                total: 244.0,
+                status: "upcoming"
+              },
+              {
+                id: "matchup-2",
+                team1: "Team Gamma",
+                team2: "Team Delta",
+                team1Odds: +110,
+                team2Odds: -130,
+                spread: 2.5,
+                total: 220.5,
+                status: "upcoming"
+              }
+            ]}
+            onBetPlaced={(bet) => {
+              console.log('Bet placed:', bet);
+              // Handle bet placement
+            }}
+          />
         );
       case 'betting':
-        return <BettingInterface teamId={selectedTeamId} week={currentWeek} />;
-      case 'faab':
         return (
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold mb-4">FAAB Predictor</h2>
-            <p className="text-gray-600">Coming soon! Strategic waiver wire bidding insights.</p>
-          </div>
+          <BettingInterface 
+            leagueId="637913" // League TB12 ID
+            userId="test-user-1"
+            currentWeek={currentWeek}
+          />
         );
+              case 'faab':
+                return (
+                  <FAABPredictor 
+                    leagueId="637913" // League TB12 ID
+                    userId="test-user-1"
+                    currentWeek={currentWeek}
+                  />
+                );
       case 'trades':
         return (
           <div className="bg-white rounded-lg shadow-md p-6">
@@ -42,10 +76,25 @@ function App() {
         );
       default:
         return (
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold mb-4">Live Matchup Odds</h2>
-            <OddsBoard />
-          </div>
+          <OddsBoard 
+            leagueId="637913" // League TB12 ID
+            userId="test-user-1"
+            matchups={[
+              {
+                id: "matchup-1",
+                team1: "Team Alpha",
+                team2: "Team Beta",
+                team1Odds: -150,
+                team2Odds: +130,
+                spread: -3.5,
+                total: 244.0,
+                status: "upcoming"
+              }
+            ]}
+            onBetPlaced={(bet) => {
+              console.log('Bet placed:', bet);
+            }}
+          />
         );
     }
   };
