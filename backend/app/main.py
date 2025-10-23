@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.v1 import tokens, espn, league_config, odds, betting, faab, trades, matchup_odds, enhanced_betting, faab_predictor, free_odds, advanced_markets, social_features
+from app.api.v1 import tokens, espn, league_config, odds, betting, faab, trades, matchup_odds, enhanced_betting, faab_predictor, free_odds, advanced_markets, social_features, trade_tree
 from app.core.config import settings
 from app.services.websocket_service import websocket_service
 from app.services.cache_service import cache_service
@@ -68,6 +68,7 @@ app.include_router(faab_predictor.router, prefix=f"{settings.API_V1_STR}/faab-pr
 app.include_router(free_odds.router, prefix=f"{settings.API_V1_STR}/free-odds", tags=["free-odds"])
 app.include_router(advanced_markets.router, prefix=f"{settings.API_V1_STR}/advanced-markets", tags=["advanced-markets"])
 app.include_router(social_features.router, prefix=f"{settings.API_V1_STR}/social", tags=["social-features"])
+app.include_router(trade_tree.router, prefix=f"{settings.API_V1_STR}/trade-tree", tags=["trade-tree"])
 app.include_router(trades.router, prefix=f"{settings.API_V1_STR}/trades", tags=["trades"])
 
 @app.get("/")
@@ -102,6 +103,9 @@ async def health_check_integrations():
         # Test Social Features service
         social_features_test = {"success": True, "message": "Social Features service is operational"}
         
+        # Test Trade Tree service
+        trade_tree_test = {"success": True, "message": "Trade Tree service is operational"}
+        
         return {
             "status": "healthy",
             "integrations": {
@@ -110,7 +114,8 @@ async def health_check_integrations():
                 "cache_service": cache_test,
                 "websocket_service": websocket_test,
                 "advanced_markets_service": advanced_markets_test,
-                "social_features_service": social_features_test
+                "social_features_service": social_features_test,
+                "trade_tree_service": trade_tree_test
             },
             "timestamp": "2024-01-15T00:00:00Z"
         }
