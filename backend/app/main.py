@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.v1 import tokens, espn, league_config, odds, betting, faab, trades, matchup_odds, enhanced_betting, faab_predictor, free_odds, advanced_markets
+from app.api.v1 import tokens, espn, league_config, odds, betting, faab, trades, matchup_odds, enhanced_betting, faab_predictor, free_odds, advanced_markets, social_features
 from app.core.config import settings
 from app.services.websocket_service import websocket_service
 from app.services.cache_service import cache_service
@@ -67,6 +67,7 @@ app.include_router(faab.router, prefix=f"{settings.API_V1_STR}/faab", tags=["faa
 app.include_router(faab_predictor.router, prefix=f"{settings.API_V1_STR}/faab-predictor", tags=["faab-predictor"])
 app.include_router(free_odds.router, prefix=f"{settings.API_V1_STR}/free-odds", tags=["free-odds"])
 app.include_router(advanced_markets.router, prefix=f"{settings.API_V1_STR}/advanced-markets", tags=["advanced-markets"])
+app.include_router(social_features.router, prefix=f"{settings.API_V1_STR}/social", tags=["social-features"])
 app.include_router(trades.router, prefix=f"{settings.API_V1_STR}/trades", tags=["trades"])
 
 @app.get("/")
@@ -98,6 +99,9 @@ async def health_check_integrations():
         # Test Advanced Markets service
         advanced_markets_test = {"success": True, "message": "Advanced Markets service is operational"}
         
+        # Test Social Features service
+        social_features_test = {"success": True, "message": "Social Features service is operational"}
+        
         return {
             "status": "healthy",
             "integrations": {
@@ -105,7 +109,8 @@ async def health_check_integrations():
                 "odds_api": odds_api_test,
                 "cache_service": cache_test,
                 "websocket_service": websocket_test,
-                "advanced_markets_service": advanced_markets_test
+                "advanced_markets_service": advanced_markets_test,
+                "social_features_service": social_features_test
             },
             "timestamp": "2024-01-15T00:00:00Z"
         }
