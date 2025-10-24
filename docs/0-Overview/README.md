@@ -4,121 +4,104 @@
 
 Central navigation and introduction to the Fantasy Football Companion App project documentation, providing overview of the project, goals, and complete documentation ecosystem navigation.
 
-## Purpose
-
-This document serves as the central navigation and introduction to the Fantasy Football Companion App project documentation. It provides an overview of the project, its goals, and how to navigate the complete documentation ecosystem.
-
-## Context
-
-The Fantasy Football Companion App is a passion project designed to enhance private fantasy football leagues with betting-style odds, strategic analytics, and social competition features. The app connects to existing fantasy platforms (ESPN, Yahoo, Sleeper) to generate custom odds, FAAB predictions, and trade analysis - all without handling real money.
-
 ## Project Vision
 
 **What we're building:** A fantasy football companion platform that enhances private leagues with betting-style odds, strategic analytics, and social competition features.
 
 **Who it's for:** Fantasy football enthusiasts, particularly friend groups and dynasty leagues who already play on ESPN, Yahoo, or Sleeper.
 
-**Why it matters:** ESPN's built-in analytics are limited, engagement drops mid-season, and there's no unified analytics dashboard for FAAB trends, trades, and league history.
+**Why it matters:** Transforms static fantasy leagues into dynamic, engaging experiences with strategic depth and social competition.
 
-## Key Features
+## Core Features
 
-### Core Features (Must Have)
-1. **Live Matchup Odds Board** - Comprehensive odds display with win probabilities, spreads, and totals
-2. **FAAB/Waiver Bid Predictor** - Strategic waiver wire bidding with league-specific intelligence
-3. **Trade Tree & Value Flow Tracker** - Historical trade analysis and value tracking
-4. **Token-Based Betting System** - 1000 tokens per week for friendly competition
-5. **Real-Time Updates** - Live odds and score updates every 30 seconds
+- **Live Matchup Odds Board** - Real-time win probabilities and betting-style odds
+- **FAAB/Waiver Bid Predictor** - Strategic intelligence for waiver wire decisions
+- **Trade Tree & Value Flow Tracker** - Historical trade analysis and value tracking
+- **Token-Based Betting System** - Virtual currency for engagement without real money
 
-### Important Features (Should Have)
-1. **Player Props** - Individual player over/under betting
-2. **Custom Matchups** - Any team vs any team competitions
-3. **League Management** - Member profiles and league statistics
-4. **Mobile Optimization** - Touch-friendly, responsive design
+## Technology Stack
 
-## Technical Stack
+- **Frontend**: React.js 18+ with TypeScript, Tailwind CSS, mobile-first design
+- **Backend**: Python FastAPI with Supabase (PostgreSQL + Auth + Real-time)
+- **Integrations**: ESPN API, The Odds API, NumPy/SciPy for Monte Carlo simulations
+- **Deployment**: Vercel (frontend) + Railway/Render (backend)
 
-- **Frontend:** React.js (mobile-first responsive design)
-- **Backend:** Python (FastAPI)
-- **Database:** Supabase (PostgreSQL with real-time subscriptions)
-- **Deployment:** Vercel (frontend) + Railway/Render (backend)
-- **Authentication:** Supabase Auth (simple user management)
+## Development Philosophy
 
-## Project Scale
+- **Free-First**: Prioritize free tiers and open-source solutions
+- **Use, Don't Build**: Leverage existing solutions over custom implementations
+- **Mobile-First**: Touch-friendly interface optimized for mobile devices
+- **Real-Time**: Live updates and data synchronization
 
-**Target Scale:** MVP (3-6 months, 1-3 developers)
-**Timeline:** 16 weeks to full launch
-**Team Size:** 1-2 developers (solo passion project with potential for collaboration)
-**Budget:** Open source (minimal infrastructure costs, free tiers where possible)
+## Documentation Structure
+
+### 0. Overview
+- **[Architecture Overview](architecture-overview.md)** - High-level system architecture and components
+- **[Coding Standards](coding-standards.md)** - Development standards and best practices
+- **[Glossary](glossary.md)** - Key terms and definitions
+- **[AI Documentation Standards](ai-documentation-standards.md)** - AI documentation principles
+- **[Development Workflow](development-workflow.md)** - Testing, building, committing, pushing requirements
+
+### 1. Product
+- **[Roadmap](1-Product/roadmap.md)** - 16-week development roadmap with phases and milestones
+- **[Features](1-Product/features/)**
+  - [FAAB Waiver Bid Predictor PRD](1-Product/features/faab-waiver-bid-predictor-prd.md)
+  - [Live Matchup Odds Board PRD](1-Product/features/live-matchup-odds-board-prd.md)
+  - [Trade Tree Value Flow Tracker PRD](1-Product/features/trade-tree-value-flow-tracker-prd.md)
+
+### 2. Design
+- **[API Specification](2-Design/api-spec.md)** - Complete REST API documentation
+- **[Backend Design](2-Design/backend.md)** - Backend architecture and services
+- **[Data Models](2-Design/data-models.md)** - Database schema and data structures
+- **[Frontend Design](2-Design/frontend.md)** - Frontend architecture and components
+- **[Integrations](2-Design/integrations.md)** - External service integrations
+- **[System Architecture](2-Design/system-architecture.md)** - Detailed technical architecture
+- **[Third-Party Integrations](2-Design/third-party-integrations.md)** - Comprehensive third-party solution research
+
+### 3. Development
+- **[Architecture Decisions](3-Development/architecture-decisions.md)** - Key architectural choices and rationale
+- **[Backlog](3-Development/backlog.md)** - Development backlog and task tracking
+- **[Changelog](3-Development/changelog.md)** - Version history and changes
+- **[Implementation Plan](3-Development/implementation-plan.md)** - Detailed implementation strategy
+- **[Implementation Status](3-Development/implementation-status.md)** - Current implementation status
+- **[Milestones](3-Development/milestones.md)** - Project milestones and deliverables
+- **[Quick Start Guide](3-Development/quick-start-guide.md)** - Getting started with development
+- **[Release Checklist](3-Development/release-checklist.md)** - Pre-release verification steps
+- **[Sprint Log](3-Development/sprint-log.md)** - Sprint planning and execution
+
+### 4. Debugging
+- **[Debug Playbook](4-Debugging/debug-playbook.md)** - Guide for debugging issues
+- **[Error Log](4-Debugging/error-log.md)** - Error tracking and resolution
+- **[Known Issues](4-Debugging/known-issues.md)** - Tracking of known issues and workarounds
+
+### 5. Prompts
+- **[Backend Development Prompts](5-Prompts/backend-prompts.md)** - AI prompts for backend tasks
+- **[Frontend Development Prompts](5-Prompts/frontend-prompts.md)** - AI prompts for frontend tasks
 
 ## Success Metrics
 
-- **User Engagement:** 80% of League TB12 members (8/10) use the app weekly
-- **Activity:** 5+ bets placed per user per week
-- **Session Duration:** 15+ minutes average session duration
-- **Participation:** 90% weekly participation rate
-- **Satisfaction:** 4.5+ user satisfaction rating
+**Engagement**: 80% of league members use weekly
+**Bets Per Week**: 5+ bets per user
+**Session Duration**: 15+ minutes per session
+**User Satisfaction**: 4.5+ stars
 
-## Documentation Navigation
+## Contributing
 
-### 0-Overview
-- **[README.md](README.md)** - This document (project introduction and navigation)
-- **[glossary.md](glossary.md)** - Project-specific terminology and definitions
-- **[architecture-overview.md](architecture-overview.md)** - High-level system architecture
-- **[coding-standards.md](coding-standards.md)** - Development standards and conventions
+This is a passion project for League TB12. Documentation follows the metadocs template structure and emphasizes:
 
-### 1-Product
-- **[roadmap.md](../1-Product/roadmap.md)** - Product roadmap and milestones
-- **[prds/](../1-Product/prds/)** - Product Requirements Documents for each feature
+- **Concise Coverage** - Essential information documented clearly
+- **AI-Optimized** - Structured for AI agent consumption
+- **Free Solutions** - Prioritizing free tiers and open-source solutions
+- **Existing Products** - Leveraging proven solutions over custom implementations
+- **Clear Cross-References** - Easy navigation between related documents
 
-### 2-Design
-- **[system-architecture.md](../2-Design/system-architecture.md)** - Detailed system design
-- **[data-models.md](../2-Design/data-models.md)** - Data structures and schemas
-- **[api-spec.md](../2-Design/api-spec.md)** - API specifications and contracts
-- **[frontend.md](../2-Design/frontend.md)** - Frontend architecture and components
-- **[backend.md](../2-Design/backend.md)** - Backend services and infrastructure
-- **[integrations.md](../2-Design/integrations.md)** - External integrations and APIs
+## Documentation Maintenance
 
-### 3-Development
-- **[changelog.md](../3-Development/changelog.md)** - Version history and changes
-- **[sprint-log.md](../3-Development/sprint-log.md)** - Sprint planning and retrospectives
-- **[architecture-decisions.md](../3-Development/architecture-decisions.md)** - ADRs and technical decisions
-- **[backlog.md](../3-Development/backlog.md)** - Feature backlog and prioritization
-- **[milestones.md](../3-Development/milestones.md)** - Project milestones and deadlines
-- **[release-checklist.md](../3-Development/release-checklist.md)** - Release process and validation
-
-### 4-Debugging
-- **[error-log.md](../4-Debugging/error-log.md)** - Error tracking and resolution
-- **[known-issues.md](../4-Debugging/known-issues.md)** - Known issues and workarounds
-- **[debug-playbook.md](../4-Debugging/debug-playbook.md)** - Debugging procedures and tools
-
-### 5-Prompts
-- **[frontend-prompts.md](../5-Prompts/frontend-prompts.md)** - Frontend development prompts
-- **[backend-prompts.md](../5-Prompts/backend-prompts.md)** - Backend development prompts
-- **[debugging-prompts.md](../5-Prompts/debugging-prompts.md)** - Debugging and troubleshooting prompts
-- **[refactor-prompts.md](../5-Prompts/refactor-prompts.md)** - Code refactoring prompts
-- **[session-notes/](../5-Prompts/session-notes/)** - AI collaboration session notes
-
-## Getting Started
-
-1. **Read the Project Context:** Start with the [project-context.md](../../meta-docs-template/project-context-template.md) for comprehensive project information
-2. **Review Architecture:** Check [architecture-overview.md](architecture-overview.md) for system design
-3. **Understand Features:** Browse [prds/](../1-Product/prds/) for detailed feature requirements
-4. **Follow Development:** Track progress in [changelog.md](../3-Development/changelog.md) and [milestones.md](../3-Development/milestones.md)
-
-## Project Status
-
-**Current Phase:** Documentation and Planning
-**Next Milestone:** Complete documentation structure and begin Phase 1 development
-**Last Updated:** [Current Date]
-**Status:** Active Development
+- **Last Updated**: 2024-01-15 (Refactored for conciseness)
+- **Next Review**: 2024-01-22
+- **Maintainer**: Development Team
+- **Version**: 1.1.0
 
 ---
 
-## Source of Truth / Version
-
-- **Creation Date:** 2024-01-15
-- **Last Updated:** 2024-01-15
-- **Next Review Date:** 2024-01-22
-- **Status:** Active
-- **Maintainer:** Development Team
-- **Version:** 1.0.0
+*This documentation serves as the single source of truth for the Fantasy Football Companion App project.*
