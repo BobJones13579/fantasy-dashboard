@@ -2,15 +2,7 @@
 
 ## TLDR
 
-AI prompts and guidance for backend development tasks in the Fantasy Football Companion App, covering FastAPI architecture, coding standards, and development patterns.
-
-## Purpose
-
-This document contains AI prompts and guidance for backend development tasks in the Fantasy Football Companion App.
-
-## Context
-
-These prompts are designed to help AI assistants understand the backend architecture, coding standards, and development patterns for the FastAPI application.
+AI prompts and guidance for backend development tasks in the Fantasy Football Companion App.
 
 ## FastAPI Development Prompts
 
@@ -34,14 +26,6 @@ Requirements:
 - Include API documentation with OpenAPI
 - Implement proper authentication and authorization
 - Add rate limiting and validation
-
-Endpoint Structure:
-- Place in appropriate router file
-- Use proper HTTP methods (GET, POST, PUT, DELETE)
-- Implement proper status codes
-- Add Pydantic schemas for validation
-- Include proper error handling
-- Add OpenAPI documentation
 
 Please create the endpoint following these guidelines.
 ```
@@ -85,14 +69,6 @@ Requirements:
 - Include proper indexing for performance
 - Add proper documentation and comments
 
-Model Structure:
-- Define model class with proper inheritance
-- Add proper column definitions and types
-- Implement relationships with other models
-- Add proper constraints and validation
-- Include proper indexing
-- Add documentation and comments
-
 Please create the model following these guidelines.
 ```
 
@@ -112,14 +88,6 @@ Requirements:
 - Add proper caching where appropriate
 - Implement query monitoring and logging
 - Add proper error handling
-
-Optimization Strategies:
-- Proper indexing for query performance
-- Efficient query patterns and joins
-- Query result caching
-- Database connection pooling
-- Query monitoring and logging
-- Performance testing
 
 Please optimize the query following these guidelines.
 ```
@@ -143,14 +111,6 @@ Requirements:
 - Add comprehensive unit tests
 - Follow established service patterns
 
-Service Structure:
-- Define service class with proper methods
-- Implement business logic and validation
-- Add proper error handling and logging
-- Include dependency injection
-- Add comprehensive unit tests
-- Follow established patterns
-
 Please create the service following these guidelines.
 ```
 
@@ -170,14 +130,6 @@ Requirements:
 - Include proper authentication and rate limiting
 - Add comprehensive logging and monitoring
 - Implement proper data validation and transformation
-
-Integration Structure:
-- Define integration class with proper methods
-- Implement API integration and error handling
-- Add retry logic and circuit breaker patterns
-- Include proper authentication and rate limiting
-- Add comprehensive logging and monitoring
-- Implement data validation and transformation
 
 Please create the integration service following these guidelines.
 ```
@@ -201,14 +153,6 @@ Requirements:
 - Add comprehensive logging and monitoring
 - Include proper error handling
 
-Authentication Features:
-- JWT token validation and management
-- User session management
-- Security measures and validation
-- Comprehensive logging and monitoring
-- Error handling and recovery
-- Rate limiting and abuse prevention
-
 Please implement the authentication following these guidelines.
 ```
 
@@ -228,14 +172,6 @@ Requirements:
 - Implement league-based authorization
 - Add comprehensive logging and monitoring
 - Include proper error handling
-
-Authorization Features:
-- Role-based access control (RBAC)
-- Data access controls and validation
-- League-based authorization
-- Comprehensive logging and monitoring
-- Error handling and recovery
-- Security validation
 
 Please implement the authorization following these guidelines.
 ```
@@ -259,14 +195,6 @@ Requirements:
 - Add comprehensive logging and monitoring
 - Include proper data validation and security
 
-WebSocket Features:
-- Real-time subscription management
-- Connection management and monitoring
-- Error handling and reconnection
-- Comprehensive logging and monitoring
-- Data validation and security
-- Performance optimization
-
 Please implement the WebSocket functionality following these guidelines.
 ```
 
@@ -289,14 +217,6 @@ Requirements:
 - Add comprehensive monitoring and logging
 - Include proper error handling and fallbacks
 
-Caching Features:
-- Redis caching and session storage
-- Cache invalidation strategies
-- Cache key management
-- Comprehensive monitoring and logging
-- Error handling and fallbacks
-- Performance optimization
-
 Please implement the caching following these guidelines.
 ```
 
@@ -316,14 +236,6 @@ Requirements:
 - Implement proper connection pooling
 - Add comprehensive monitoring and profiling
 - Include proper error handling and logging
-
-Optimization Strategies:
-- Database query optimization
-- Caching strategies and implementation
-- Connection pooling and management
-- Comprehensive monitoring and profiling
-- Error handling and logging
-- Performance testing and validation
 
 Please optimize the performance following these guidelines.
 ```
@@ -347,14 +259,6 @@ Requirements:
 - Add proper test coverage and documentation
 - Include proper test fixtures and mocking
 
-Test Structure:
-- Unit tests for business logic
-- Service method testing
-- Error handling and edge case testing
-- Data validation and transformation testing
-- Test coverage and documentation
-- Test fixtures and mocking
-
 Please write the unit tests following these guidelines.
 ```
 
@@ -374,14 +278,6 @@ Requirements:
 - Test authentication and authorization
 - Add proper test coverage and documentation
 - Include proper test fixtures and mocking
-
-Test Coverage:
-- API endpoint testing
-- Database integration testing
-- External API integration testing
-- Authentication and authorization testing
-- Test coverage and documentation
-- Test fixtures and mocking
 
 Please write the integration tests following these guidelines.
 ```
@@ -405,14 +301,6 @@ Requirements:
 - Add comprehensive monitoring and alerting
 - Include proper user-friendly error messages
 
-Error Handling Features:
-- Structured logging with correlation IDs
-- Error classification and handling
-- Error recovery mechanisms
-- Comprehensive monitoring and alerting
-- User-friendly error messages
-- Error tracking and analysis
-
 Please implement the error handling following these guidelines.
 ```
 
@@ -432,14 +320,6 @@ Requirements:
 - Implement proper log aggregation and analysis
 - Add comprehensive monitoring and alerting
 - Include proper log retention and archival
-
-Logging Features:
-- Structured logging with correlation IDs
-- Log levels and formatting
-- Log aggregation and analysis
-- Comprehensive monitoring and alerting
-- Log retention and archival
-- Performance and security logging
 
 Please implement the logging following these guidelines.
 ```
@@ -462,14 +342,6 @@ Requirements:
 - Add comprehensive security monitoring and logging
 - Include proper error handling and recovery
 - Implement proper data protection measures
-
-Security Features:
-- Input validation and sanitization
-- Authentication and authorization
-- Security monitoring and logging
-- Error handling and recovery
-- Data protection measures
-- Security testing and validation
 
 Please implement the security measures following these guidelines.
 ```
@@ -500,14 +372,3 @@ Please implement the security measures following these guidelines.
 - [ ] Performance optimized
 - [ ] Documentation updated
 - [ ] Ready for deployment
-
----
-
-## Source of Truth / Version
-
-- **Creation Date:** 2024-01-15
-- **Last Updated:** 2024-01-15
-- **Next Review Date:** 2024-01-22
-- **Status:** Active
-- **Maintainer:** Development Team
-- **Version:** 1.0.0

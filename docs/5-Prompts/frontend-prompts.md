@@ -2,15 +2,7 @@
 
 ## TLDR
 
-AI prompts and guidance for frontend development tasks in the Fantasy Football Companion App, covering React.js architecture, coding standards, and development patterns.
-
-## Purpose
-
-This document contains AI prompts and guidance for frontend development tasks in the Fantasy Football Companion App.
-
-## Context
-
-These prompts are designed to help AI assistants understand the frontend architecture, coding standards, and development patterns for the React.js application.
+AI prompts and guidance for frontend development tasks in the Fantasy Football Companion App.
 
 ## React.js Development Prompts
 
@@ -35,13 +27,6 @@ Requirements:
 - Follow the established component structure
 - Include accessibility features (ARIA labels, keyboard navigation)
 - Add proper TypeScript types and interfaces
-
-Component Structure:
-- Place in appropriate folder (common/, features/, or layout/)
-- Create index.tsx for the component
-- Create types.ts for TypeScript interfaces
-- Create styles.module.css if needed
-- Add proper JSDoc comments
 
 Please create the component following these guidelines.
 ```
@@ -85,13 +70,6 @@ Requirements:
 - Add optimistic updates where appropriate
 - Implement proper query invalidation
 
-Hook Structure:
-- Use useQuery for data fetching
-- Use useMutation for data updates
-- Implement proper error handling
-- Add loading and error states
-- Include proper TypeScript types
-
 Please create the React Query hook following these guidelines.
 ```
 
@@ -110,13 +88,6 @@ Requirements:
 - Create custom hook for context consumption
 - Implement proper state updates and actions
 - Add error handling and validation
-
-Context Structure:
-- Create context with proper TypeScript types
-- Implement provider with state and actions
-- Create custom hook for easy consumption
-- Add proper error handling
-- Include JSDoc documentation
 
 Please create the context following these guidelines.
 ```
@@ -140,13 +111,6 @@ Requirements:
 - Add connection state monitoring
 - Handle network interruptions gracefully
 
-Hook Structure:
-- Use useEffect for connection management
-- Implement proper cleanup on unmount
-- Add connection state tracking
-- Implement reconnection logic
-- Add error handling and fallbacks
-
 Please create the WebSocket hook following these guidelines.
 ```
 
@@ -169,13 +133,6 @@ Requirements:
 - Test across different screen sizes
 - Implement proper viewport handling
 
-Design Principles:
-- Mobile-first with progressive enhancement
-- Touch-friendly interface elements
-- Optimized performance for mobile devices
-- Proper responsive breakpoints
-- Accessible design patterns
-
 Please implement the responsive design following these guidelines.
 ```
 
@@ -195,14 +152,6 @@ Requirements:
 - Add app installation prompts
 - Optimize for app-like experience
 - Implement background sync
-
-PWA Features:
-- Service worker implementation
-- Offline functionality
-- Push notifications
-- App installation
-- Background sync
-- App-like experience
 
 Please implement the PWA features following these guidelines.
 ```
@@ -226,14 +175,6 @@ Requirements:
 - Implement virtual scrolling for large lists
 - Add performance monitoring
 
-Optimization Techniques:
-- React.memo for component memoization
-- useMemo for expensive calculations
-- useCallback for function memoization
-- Virtual scrolling for large datasets
-- Lazy loading for components
-- Performance monitoring
-
 Please optimize the component following these guidelines.
 ```
 
@@ -253,14 +194,6 @@ Requirements:
 - Implement proper loading states
 - Add performance monitoring
 - Optimize asset loading
-
-Optimization Strategies:
-- Code splitting with React.lazy
-- Lazy loading of components
-- Bundle size optimization
-- Asset optimization
-- Performance monitoring
-- Loading state management
 
 Please implement the bundle optimization following these guidelines.
 ```
@@ -284,14 +217,6 @@ Requirements:
 - Test accessibility features
 - Add proper test coverage
 
-Test Structure:
-- Unit tests for component logic
-- Integration tests for user interactions
-- Accessibility tests
-- Error state tests
-- Edge case tests
-- Performance tests
-
 Please write the tests following these guidelines.
 ```
 
@@ -311,14 +236,6 @@ Requirements:
 - Test real-time updates and WebSocket connections
 - Test user workflows and interactions
 - Add proper test coverage
-
-Test Coverage:
-- Component integration
-- API integration
-- Real-time updates
-- User workflows
-- Error handling
-- Performance
 
 Please write the integration tests following these guidelines.
 ```
@@ -342,14 +259,6 @@ Requirements:
 - Test with accessibility tools
 - Ensure color contrast compliance
 
-Accessibility Features:
-- ARIA labels and roles
-- Keyboard navigation
-- Screen reader support
-- Color contrast compliance
-- Focus management
-- Semantic HTML
-
 Please implement the accessibility features following these guidelines.
 ```
 
@@ -370,14 +279,6 @@ Requirements:
 - Implement error recovery mechanisms
 - Add fallback UI components
 - Test error scenarios
-
-Error Handling:
-- Error boundary implementation
-- Error logging and reporting
-- User-friendly error messages
-- Error recovery mechanisms
-- Fallback UI components
-- Error scenario testing
 
 Please implement the error boundary following these guidelines.
 ```
@@ -411,14 +312,3 @@ Please implement the error boundary following these guidelines.
 - [ ] Mobile testing completed
 - [ ] Documentation updated
 - [ ] Ready for deployment
-
----
-
-## Source of Truth / Version
-
-- **Creation Date:** 2024-01-15
-- **Last Updated:** 2024-01-15
-- **Next Review Date:** 2024-01-22
-- **Status:** Active
-- **Maintainer:** Development Team
-- **Version:** 1.0.0
