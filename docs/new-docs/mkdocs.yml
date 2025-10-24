@@ -1,0 +1,152 @@
+site_name: Fantasy Football Companion App
+site_description: Fantasy football companion platform with betting-style odds and strategic analytics
+site_url: https://fantasy-companion.app
+repo_url: https://github.com/jimingxu/fantasy-dashboard
+repo_name: fantasy-dashboard
+
+# Configuration
+theme:
+  name: material
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.indexes
+    - navigation.top
+    - navigation.tracking
+    - navigation.instant
+    - navigation.footer
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - content.action.view
+    - content.tabs.link
+    - content.footnote.tooltips
+    - header.autohide
+    - announce.dismiss
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+# Plugins
+plugins:
+  - search:
+      lang: en
+
+# Markdown extensions
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.superfences
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.critic
+  - admonition
+  - footnotes
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+# Navigation
+nav:
+  - Home: README.md
+  - Product:
+    - product/vision.md
+    - product/overview.md
+    - product/backlog.md
+    - product/current_task.md
+  - Engineering:
+    - engineering/architecture.md
+    - engineering/changelog.md
+    - engineering/bugs.md
+    - engineering/decisions.md
+  - Meta:
+    - meta/handbook.md
+    - meta/glossary.md
+    - Templates:
+      - meta/templates/prd-template.md
+      - meta/templates/design-template.md
+      - meta/templates/implementation-plan-template.md
+
+# Extra configuration
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/jimingxu
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/jimingxu
+
+# Copyright
+copyright: Copyright &copy; 2024 Fantasy Football Companion App
+
+# Validation
+validation:
+  nav:
+    omitted_files: info
+    not_found: warn
+    absolute_links: info
+  links:
+    not_found: warn
+    anchors: info
+    absolute_links: info
+    unrecognized_links: info
+
+# Build configuration
+docs_dir: .
+site_dir: site
+use_directory_urls: true
+strict: false
+
+# Watch configuration for development
+watch:
+  - .
