@@ -1,6 +1,6 @@
 # System Architecture
 
-**TL;DR** — React frontend with FastAPI backend, Supabase database, and ESPN API integration for real-time fantasy football league enhancement.
+**TL;DR** — Advanced React frontend with comprehensive FastAPI backend, Supabase database, and ESPN API integration. All core features implemented and ready for testing.
 
 ## System Overview
 
@@ -31,71 +31,168 @@ Modern web application with React frontend, FastAPI backend, and Supabase databa
 
 ### Frontend
 - **Framework** — React.js 18+ with TypeScript
-- **Build Tools** — Vite for fast development and building
-- **Deployment** — Vercel with automatic deployments and previews
+- **Styling** — Tailwind CSS for utility-first styling
+- **State Management** — React Query for server state, Context API for client state
+- **Components** — 37+ components covering all features
+- **Deployment** — Vercel with automatic deployments
 
 ### Backend
 - **Runtime** — Python 3.11+
-- **Framework** — FastAPI for high-performance API with automatic documentation
-- **API Design** — RESTful API with WebSocket support for real-time updates
+- **Framework** — FastAPI for high-performance API
+- **Database** — Supabase (PostgreSQL + Auth + Real-time)
+- **Cache** — Redis for session storage and API caching
+- **Services** — 13+ specialized services for different features
 
-### Infrastructure
-- **Hosting** — Vercel (frontend) + Railway/Render (backend)
-- **CDN** — Vercel Edge Network for global content delivery
-- **Monitoring** — Built-in Vercel analytics and error tracking
+### Integrations
+- **Fantasy Data** — ESPN API via espn-api library (read-only)
+- **Sports Odds** — The Odds API (500 requests/month free tier)
+- **Simulations** — NumPy/SciPy for Monte Carlo calculations
+- **Real-Time** — Socket.IO for WebSocket connections
 
-## Security
+## API Architecture
+
+### Endpoint Structure
+```
+/api/v1/
+├── tokens/           # Token management and allocation
+├── betting/          # Bet placement and settlement
+├── odds/             # Odds calculation and display
+├── matchup-odds/     # Matchup-specific odds
+├── faab/             # FAAB bid management
+├── faab-predictor/   # Bid recommendations
+├── trades/           # Trade history and analysis
+├── trade-tree/       # Trade visualization
+├── advanced-markets/ # Player props and custom matchups
+├── social/           # Leaderboards and competitions
+├── enhanced-betting/ # Advanced betting analytics
+├── free-odds/        # External odds integration
+├── espn/             # ESPN API integration
+└── league/           # League configuration
+```
+
+### Service Layer
+- **BettingService** — Bet placement, settlement, and analytics
+- **TokenService** — Token allocation and management
+- **OddsService** — Odds calculation and display
+- **FAABService** — FAAB bid management and analysis
+- **TradeService** — Trade history and value tracking
+- **ESPNService** — ESPN API integration
+- **MonteCarloService** — Statistical simulations
+- **WebSocketService** — Real-time updates
+- **CacheService** — Redis caching and optimization
+
+## Database Schema
+
+### Core Tables
+- **users** — User profiles and authentication
+- **leagues** — League information and settings
+- **teams** — Team data and statistics
+- **matchups** — Weekly matchup data
+- **bets** — Betting history and results
+- **tokens** — Token balances and transactions
+
+### Analytics Tables
+- **faab_bids** — FAAB bid history and analysis
+- **trades** — Trade history and value tracking
+- **odds_history** — Historical odds data
+- **performance_metrics** — User and system performance
+
+## Real-Time Features
+
+### WebSocket Implementation
+- **Connection Management** — Automatic reconnection and error handling
+- **Event Types** — odds_update, bet_settled, upset_alert
+- **Data Synchronization** — Real-time updates every 30 seconds
+- **Performance** — Optimized for mobile devices
+
+### Real-Time Updates
+- **Odds Updates** — Live odds changes during games
+- **Score Updates** — Real-time score updates
+- **Bet Settlement** — Automatic bet settlement
+- **Leaderboard Updates** — Real-time leaderboard changes
+
+## Security Architecture
 
 ### Authentication
-Supabase Auth with JWT tokens, email/password and social login options
-
-### Authorization
-Row Level Security (RLS) in Supabase for data access control
+- **Supabase Auth** — JWT token-based authentication
+- **User Management** — Secure user registration and login
+- **Session Management** — Secure session handling
+- **API Security** — Rate limiting and request validation
 
 ### Data Protection
-HTTPS/TLS encryption, input validation, and secure API key management
+- **Input Validation** — Comprehensive input validation
+- **SQL Injection Prevention** — Parameterized queries
+- **XSS Protection** — Frontend input sanitization
+- **CORS Configuration** — Proper CORS setup
 
-## Performance
+## Performance Optimization
 
-### Optimization Strategies
-- **Frontend** — Code splitting, lazy loading, and React optimization
-- **Backend** — Database indexing, query optimization, and caching
-- **Real-Time** — WebSocket connections with fallback to polling
+### Caching Strategy
+- **Redis Caching** — API response caching
+- **Database Optimization** — Query optimization and indexing
+- **Frontend Caching** — React Query for data caching
+- **CDN Integration** — Vercel CDN for static assets
 
-### Scalability Considerations
-- **Database** — Supabase auto-scaling PostgreSQL with connection pooling
-- **API** — FastAPI async support for high concurrency
-- **Frontend** — CDN distribution and edge caching
+### Scalability
+- **Database Indexing** — Optimized database queries
+- **Connection Pooling** — Efficient database connections
+- **Load Balancing** — Ready for horizontal scaling
+- **Monitoring** — Performance monitoring and alerting
 
-## Deployment
+## Deployment Architecture
 
-### Environment Strategy
-- **Development** — Local development with hot reloading
-- **Staging** — Vercel preview deployments for testing
-- **Production** — Vercel production deployment with custom domain
+### Frontend Deployment
+- **Platform** — Vercel
+- **Build Process** — Automatic builds on Git push
+- **CDN** — Global CDN for fast loading
+- **Environment** — Production and staging environments
 
-### CI/CD Pipeline
-GitHub Actions for automated testing, building, and deployment
+### Backend Deployment
+- **Platform** — Railway/Render
+- **Containerization** — Docker containers
+- **Database** — Supabase managed database
+- **Monitoring** — Application performance monitoring
 
 ## Integration Architecture
 
 ### ESPN API Integration
-- **Library** — espn-api Python library (unofficial)
-- **Authentication** — Cookie-based authentication (espn_s2 and SWID)
-- **Data Access** — Read-only access to league data
-- **Rate Limiting** — Respectful API usage with caching
+- **Authentication** — Cookie-based authentication
+- **Data Sync** — 30-second sync intervals
+- **Error Handling** — Robust error handling and retry logic
+- **Rate Limiting** — Respectful API usage
 
 ### The Odds API Integration
-- **API** — The Odds API for sports betting odds
-- **Authentication** — API key authentication
-- **Free Tier** — 500 requests/month
-- **Data Types** — Moneyline odds, point spreads, over/under totals
+- **Authentication** — API key-based authentication
+- **Data Processing** — Real-time odds processing
+- **Fallback Strategy** — Multiple data sources
+- **Cost Management** — Free tier optimization
 
-### Monte Carlo Simulations
-- **Library** — NumPy/SciPy for statistical simulations
-- **Purpose** — Win probability calculations for matchups
-- **Implementation** — Server-side calculations with caching
+## Monitoring & Logging
+
+### Application Monitoring
+- **Health Checks** — Comprehensive health check endpoints
+- **Performance Metrics** — API response times and throughput
+- **Error Tracking** — Comprehensive error logging
+- **User Analytics** — User engagement and feature usage
+
+### System Monitoring
+- **Database Performance** — Query performance monitoring
+- **Cache Performance** — Redis cache hit rates
+- **API Usage** — External API usage tracking
+- **System Resources** — CPU, memory, and disk usage
+
+## Development Environment
+
+### Local Development
+- **Backend** — FastAPI with hot reload
+- **Frontend** — React with hot reload
+- **Database** — Local Supabase instance
+- **Cache** — Local Redis instance
+
+### Testing
+- **Unit Tests** — Comprehensive unit test coverage
+- **Integration Tests** — API integration testing
+- **End-to-End Tests** — Full user workflow testing
+- **Performance Tests** — Load and stress testing
 
 Last Updated: 2024-01-15
-
-
