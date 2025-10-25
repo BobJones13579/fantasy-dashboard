@@ -415,12 +415,12 @@ def calculate_potential_payout(amount: int, odds: int) -> int:
     else:
         return int(amount * (100 / abs(odds) + 1))
 
-async def save_bet(bet: Bet) -> None:
+async def save_bet(bet: BetInDB) -> None:
     """Save bet to database"""
     # This would be implemented with actual database operations
     logger.info(f"Saving bet: {bet.id}")
 
-async def process_bet_background(bet: Bet) -> None:
+async def process_bet_background(bet: BetInDB) -> None:
     """Background task to process bet"""
     try:
         # This would include bet processing logic
@@ -486,17 +486,17 @@ async def calculate_betting_opportunities(
     """Calculate betting opportunities based on current data"""
     return []
 
-async def fetch_bet_by_id(bet_id: str) -> Optional[Bet]:
+async def fetch_bet_by_id(bet_id: str) -> Optional[BetInDB]:
     """Fetch bet by ID"""
     # This would be implemented with actual database queries
     return None
 
-def is_bet_cancellable(bet: Bet) -> bool:
+def is_bet_cancellable(bet: BetInDB) -> bool:
     """Check if bet is still cancellable"""
     # This would check if the game has started, etc.
     return True
 
-async def update_bet(bet: Bet) -> None:
+async def update_bet(bet: BetInDB) -> None:
     """Update bet in database"""
     # This would be implemented with actual database operations
     logger.info(f"Updating bet: {bet.id}")
