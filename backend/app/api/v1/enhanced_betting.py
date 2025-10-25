@@ -57,7 +57,7 @@ async def place_bet(
             )
         
         # Create bet record
-        bet = Bet(
+        bet = BetInDB(
             id=generate_bet_id(),
             user_id=user_id,
             matchup_id=bet_data['matchup_id'],
