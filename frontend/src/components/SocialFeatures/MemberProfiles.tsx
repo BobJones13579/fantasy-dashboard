@@ -26,8 +26,7 @@ import {
   ClockIcon,
   EyeIcon,
   ChatBubbleLeftRightIcon,
-  ShareIcon,
-  CrownIcon
+  ShareIcon
 } from '@heroicons/react/20/solid';
 
 interface MemberProfile {
@@ -172,7 +171,7 @@ export const MemberProfiles: React.FC<MemberProfilesProps> = ({ leagueId, userId
   const getRankIcon = (rank: number) => {
     switch (rank) {
       case 1:
-        return <CrownIcon className="h-6 w-6 text-yellow-500" />;
+        return <StarIcon className="h-6 w-6 text-yellow-500" />;
       case 2:
         return <TrophyIcon className="h-5 w-5 text-gray-400" />;
       case 3:
@@ -344,7 +343,7 @@ export const MemberProfiles: React.FC<MemberProfilesProps> = ({ leagueId, userId
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="flex items-center space-x-2 mb-2">
-            <UsersIcon className="h-5 w-5 text-blue-500" />
+            <UserIcon className="h-5 w-5 text-blue-500" />
             <h4 className="font-medium text-gray-900">Total Members</h4>
           </div>
           <div className="text-2xl font-bold text-blue-600">{mockMembers.length}</div>

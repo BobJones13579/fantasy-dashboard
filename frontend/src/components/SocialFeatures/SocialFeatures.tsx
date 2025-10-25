@@ -24,7 +24,6 @@ import {
   ChatBubbleLeftRightIcon,
   ChartBarIcon,
   FireIcon,
-  CrownIcon,
   GiftIcon
 } from '@heroicons/react/20/solid';
 import { Leaderboards } from './Leaderboards';
@@ -61,8 +60,8 @@ export const SocialFeatures: React.FC<SocialFeaturesProps> = ({
 
   const tabs: TabOption[] = [
     { id: 'leaderboards', name: 'Leaderboards', icon: TrophyIcon },
-    { id: 'competitions', name: 'Competitions', icon: CrownIcon },
-    { id: 'achievements', name: 'Achievements', icon: StarIcon, count: 3 },
+    { id: 'competitions', name: 'Competitions', icon: StarIcon },
+    { id: 'achievements', name: 'Achievements', icon: TrophyIcon, count: 3 },
     { id: 'community', name: 'Community', icon: ChatBubbleLeftRightIcon },
     { id: 'profiles', name: 'Members', icon: UsersIcon }
   ];

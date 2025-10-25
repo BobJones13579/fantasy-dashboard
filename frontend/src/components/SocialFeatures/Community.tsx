@@ -21,7 +21,7 @@ import {
   FireIcon,
   ChatBubbleLeftRightIcon,
   EyeIcon,
-  ThumbUpIcon,
+  HandThumbUpIcon,
   ShareIcon,
   BellIcon,
   UsersIcon,

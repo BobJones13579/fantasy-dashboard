@@ -353,7 +353,7 @@ export const FantasyMarkets: React.FC<FantasyMarketsProps> = ({
                         {Object.entries(market.participant1.stats).map(([key, value]) => (
                           <div key={key} className="flex justify-between">
                             <span>{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                            <span className="font-medium">{value}</span>
+                            <span className="font-medium">{String(value)}</span>
                           </div>
                         ))}
                       </div>

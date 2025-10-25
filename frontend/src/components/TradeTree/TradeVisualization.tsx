@@ -22,8 +22,8 @@ import {
   CurrencyDollarIcon,
   UserGroupIcon,
   EyeIcon,
-  ZoomInIcon,
-  ZoomOutIcon,
+  MagnifyingGlassPlusIcon,
+  MagnifyingGlassMinusIcon,
   ArrowsPointingOutIcon
 } from '@heroicons/react/20/solid';
 
@@ -218,14 +218,14 @@ export const TradeVisualization: React.FC<TradeVisualizationProps> = ({
             onClick={handleZoomOut}
             className="p-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
           >
-            <ZoomOutIcon className="h-4 w-4" />
+            <MagnifyingGlassMinusIcon className="h-4 w-4" />
           </button>
           <span className="text-sm text-gray-600">{Math.round(zoom * 100)}%</span>
           <button
             onClick={handleZoomIn}
             className="p-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
           >
-            <ZoomInIcon className="h-4 w-4" />
+            <MagnifyingGlassPlusIcon className="h-4 w-4" />
           </button>
           <button
             onClick={handleReset}

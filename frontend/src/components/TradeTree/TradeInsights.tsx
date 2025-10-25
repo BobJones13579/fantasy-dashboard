@@ -19,8 +19,8 @@ import React from 'react';
 import { 
   LightBulbIcon,
   ChartBarIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
   ClockIcon,
   TrophyIcon,
   CurrencyDollarIcon,
@@ -153,7 +153,7 @@ export const TradeInsights: React.FC<TradeInsightsProps> = ({
     if (trends.trendDirection === 'up') {
       recommendations.push({
         type: 'value',
-        icon: TrendingUpIcon,
+        icon: ArrowTrendingUpIcon,
         title: 'High Market Values',
         description: 'Trade values are trending upward. Consider selling high on your assets.',
         priority: 'high',
@@ -162,7 +162,7 @@ export const TradeInsights: React.FC<TradeInsightsProps> = ({
     } else if (trends.trendDirection === 'down') {
       recommendations.push({
         type: 'value',
-        icon: TrendingDownIcon,
+        icon: ArrowTrendingDownIcon,
         title: 'Low Market Values',
         description: 'Trade values are trending downward. This might be a good time to buy low.',
         priority: 'high',
@@ -226,7 +226,7 @@ export const TradeInsights: React.FC<TradeInsightsProps> = ({
 
         <div className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="flex items-center space-x-2 mb-2">
-            <TrendingUpIcon className="h-5 w-5 text-green-500" />
+            <ArrowTrendingUpIcon className="h-5 w-5 text-green-500" />
             <h4 className="font-medium text-gray-900">Market Trend</h4>
           </div>
           <div className="text-2xl font-bold text-green-600 capitalize">{trends.trendDirection}</div>

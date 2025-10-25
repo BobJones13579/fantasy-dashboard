@@ -19,8 +19,8 @@
 import React, { useMemo } from 'react';
 import { 
   ChartBarIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
   CurrencyDollarIcon,
   ClockIcon,
   ExclamationTriangleIcon
@@ -160,7 +160,7 @@ export const BettingAnalytics: React.FC<BettingAnalyticsProps> = ({
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center">
             <div className="p-3 bg-green-100 rounded-lg">
-              <TrendingUpIcon className="h-6 w-6 text-green-600" />
+              <ArrowTrendingUpIcon className="h-6 w-6 text-green-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Net Profit</p>
@@ -190,7 +190,7 @@ export const BettingAnalytics: React.FC<BettingAnalyticsProps> = ({
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center">
             <div className="p-3 bg-orange-100 rounded-lg">
-              <TrendingDownIcon className="h-6 w-6 text-orange-600" />
+              <ArrowTrendingDownIcon className="h-6 w-6 text-orange-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Win Rate</p>
@@ -283,7 +283,7 @@ export const BettingAnalytics: React.FC<BettingAnalyticsProps> = ({
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {Object.entries(analytics.betTypeStats).map(([type, stats]) => (
+              {Object.entries(analytics.betTypeStats).map(([type, stats]: [string, any]) => (
                 <tr key={type}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 capitalize">
                     {type}
@@ -315,7 +315,7 @@ export const BettingAnalytics: React.FC<BettingAnalyticsProps> = ({
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Weekly Performance</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {Object.entries(analytics.weeklyStats).map(([week, stats]) => (
+          {Object.entries(analytics.weeklyStats).map(([week, stats]: [string, any]) => (
             <div key={week} className="border border-gray-200 rounded-lg p-4">
               <div className="flex justify-between items-center mb-2">
                 <h4 className="font-medium text-gray-900">Week {week}</h4>
@@ -354,7 +354,7 @@ export const BettingAnalytics: React.FC<BettingAnalyticsProps> = ({
         <div className="space-y-4">
           {analytics.roi > 0 && (
             <div className="flex items-start space-x-3 p-4 bg-green-50 rounded-lg">
-              <TrendingUpIcon className="h-5 w-5 text-green-600 mt-0.5" />
+              <ArrowTrendingUpIcon className="h-5 w-5 text-green-600 mt-0.5" />
               <div>
                 <h4 className="font-medium text-green-800">Positive Performance</h4>
                 <p className="text-sm text-green-700">
@@ -378,7 +378,7 @@ export const BettingAnalytics: React.FC<BettingAnalyticsProps> = ({
           
           {analytics.recentWinRate < analytics.winRate && (
             <div className="flex items-start space-x-3 p-4 bg-yellow-50 rounded-lg">
-              <TrendingDownIcon className="h-5 w-5 text-yellow-600 mt-0.5" />
+              <ArrowTrendingDownIcon className="h-5 w-5 text-yellow-600 mt-0.5" />
               <div>
                 <h4 className="font-medium text-yellow-800">Recent Performance Decline</h4>
                 <p className="text-sm text-yellow-700">

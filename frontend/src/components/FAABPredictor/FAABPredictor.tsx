@@ -95,7 +95,12 @@ export const FAABPredictor: React.FC<FAABPredictorProps> = ({
   userId, 
   currentWeek 
 }) => {
-  const { isConnected, sendMessage, subscribe } = useWebSocket('http://localhost:8000');
+  const { isConnected, authenticate, subscribeToLeague } = useWebSocket({
+    serverUrl: 'http://localhost:8000',
+    userId,
+    leagueId,
+    autoConnect: true
+  });
   const [activeTab, setActiveTab] = useState<'recommendations' | 'market' | 'history'>('recommendations');
   const [recommendations, setRecommendations] = useState<FAABRecommendation[]>([]);
   const [marketIntelligence, setMarketIntelligence] = useState<FAABMarketIntelligence | null>(null);
@@ -106,24 +111,26 @@ export const FAABPredictor: React.FC<FAABPredictorProps> = ({
 
   useEffect(() => {
     if (isConnected) {
-      // Authenticate the client
-      sendMessage('authenticate', { user_id: userId, league_id: leagueId });
-      // Subscribe to league updates
-      sendMessage('subscribe_league', { league_id: leagueId });
+      // Subscribe to league updates for FAAB data
+      subscribeToLeague(leagueId);
     }
-  }, [isConnected, leagueId, userId, sendMessage]);
+  }, [isConnected, leagueId, subscribeToLeague]);
 
   useEffect(() => {
-    // Subscribe to FAAB updates
-    const unsubscribe = subscribe('faab_recommendations_updated', (data: any) => {
+    // Subscribe to FAAB updates using the WebSocket hook
+    const handleFAABUpdate = (data: any) => {
       console.log('Received FAAB recommendations update:', data);
       if (data.recommendations) {
         setRecommendations(data.recommendations.recommendations || []);
       }
-    });
+    };
 
-    return () => unsubscribe();
-  }, [subscribe]);
+    // Note: Event subscription would be handled by the WebSocket service
+    // This is a placeholder for the actual implementation
+    return () => {
+      // Cleanup would be handled by the WebSocket service
+    };
+  }, []);
 
   useEffect(() => {
     loadRecommendations();

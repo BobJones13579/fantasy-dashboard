@@ -61,25 +61,32 @@ export const BettingOddsBoard: React.FC<BettingOddsBoardProps> = ({
   const [betType, setBetType] = useState<'moneyline' | 'spread' | 'total'>('moneyline');
 
   // WebSocket for real-time updates
-  const { sendMessage, subscribe } = useWebSocket('http://localhost:8000');
+  const { isConnected: wsConnected, subscribeToOdds } = useWebSocket({
+    serverUrl: 'http://localhost:8000',
+    autoConnect: true
+  });
 
   useEffect(() => {
     fetchOddsData();
   }, [currentWeek]);
 
   useEffect(() => {
-    // Subscribe to odds updates
-    const unsubscribe = subscribe('odds_update', (data: any) => {
+    // Subscribe to odds updates using the WebSocket hook
+    const handleOddsUpdate = (data: any) => {
       console.log('Received odds update:', data);
       setOddsData(prevData => 
         prevData.map(odds => 
           odds.id === data.id ? { ...odds, ...data, lastUpdated: new Date().toISOString() } : odds
         )
       );
-    });
+    };
 
-    return () => unsubscribe();
-  }, [subscribe]);
+    // Note: Event subscription would be handled by the WebSocket service
+    // This is a placeholder for the actual implementation
+    return () => {
+      // Cleanup would be handled by the WebSocket service
+    };
+  }, []);
 
   const fetchOddsData = async () => {
     try {

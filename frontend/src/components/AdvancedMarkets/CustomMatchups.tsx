@@ -301,7 +301,7 @@ export const CustomMatchups: React.FC<CustomMatchupsProps> = ({
                       {Object.entries(matchup.participant1.stats).map(([key, value]) => (
                         <div key={key} className="flex justify-between">
                           <span>{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                          <span className="font-medium">{value}</span>
+                          <span className="font-medium">{String(value)}</span>
                         </div>
                       ))}
                     </div>
@@ -340,7 +340,7 @@ export const CustomMatchups: React.FC<CustomMatchupsProps> = ({
                       {Object.entries(matchup.participant2.stats).map(([key, value]) => (
                         <div key={key} className="flex justify-between">
                           <span>{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                          <span className="font-medium">{value}</span>
+                          <span className="font-medium">{String(value)}</span>
                         </div>
                       ))}
                     </div>

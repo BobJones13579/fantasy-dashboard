@@ -20,8 +20,8 @@ import {
   ChartBarIcon,
   TrophyIcon,
   CurrencyDollarIcon,
-  TrendingUpIcon,
-  TrendingDownIcon,
+  ArrowTrendingUpIcon,
+  ArrowTrendingDownIcon,
   StarIcon,
   ArrowPathIcon,
   ClockIcon
@@ -159,9 +159,9 @@ export const TradeAnalysis: React.FC<TradeAnalysisProps> = ({
                       selectedTrade.roi.team1_roi > 0 ? 'text-green-600' : 'text-red-600'
                     }`}>
                       {selectedTrade.roi.team1_roi > 0 ? (
-                        <TrendingUpIcon className="h-4 w-4" />
+                        <ArrowTrendingUpIcon className="h-4 w-4" />
                       ) : (
-                        <TrendingDownIcon className="h-4 w-4" />
+                        <ArrowTrendingDownIcon className="h-4 w-4" />
                       )}
                       <span className="font-semibold">
                         {selectedTrade.roi.team1_roi > 0 ? '+' : ''}{selectedTrade.roi.team1_roi.toFixed(1)}%
@@ -196,9 +196,9 @@ export const TradeAnalysis: React.FC<TradeAnalysisProps> = ({
                       selectedTrade.roi.team2_roi > 0 ? 'text-green-600' : 'text-red-600'
                     }`}>
                       {selectedTrade.roi.team2_roi > 0 ? (
-                        <TrendingUpIcon className="h-4 w-4" />
+                        <ArrowTrendingUpIcon className="h-4 w-4" />
                       ) : (
-                        <TrendingDownIcon className="h-4 w-4" />
+                        <ArrowTrendingDownIcon className="h-4 w-4" />
                       )}
                       <span className="font-semibold">
                         {selectedTrade.roi.team2_roi > 0 ? '+' : ''}{selectedTrade.roi.team2_roi.toFixed(1)}%

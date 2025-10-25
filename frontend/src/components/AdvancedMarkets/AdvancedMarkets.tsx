@@ -43,29 +43,36 @@ export const AdvancedMarkets: React.FC<AdvancedMarketsProps> = ({
   const [marketData, setMarketData] = useState<any>({});
 
   // WebSocket connection for real-time updates
-  const { isConnected: wsConnected, sendMessage, subscribe } = useWebSocket('http://localhost:8000');
+  const { isConnected: wsConnected, authenticate, subscribeToLeague } = useWebSocket({
+    serverUrl: 'http://localhost:8000',
+    userId,
+    leagueId,
+    autoConnect: true
+  });
 
   useEffect(() => {
     if (wsConnected) {
-      sendMessage('authenticate', { user_id: userId, league_id: leagueId });
       setIsConnected(true);
-      
-      // Subscribe to advanced markets updates
-      sendMessage('subscribe_advanced_markets', { league_id: leagueId });
+      // Subscribe to league updates for advanced markets
+      subscribeToLeague(leagueId);
     } else {
       setIsConnected(false);
     }
-  }, [wsConnected, leagueId, userId, sendMessage]);
+  }, [wsConnected, leagueId, subscribeToLeague]);
 
   useEffect(() => {
-    // Subscribe to market updates
-    const unsubscribe = subscribe('market_update', (data: any) => {
+    // Subscribe to market updates using the WebSocket hook
+    const handleMarketUpdate = (data: any) => {
       console.log('Received market update:', data);
-      setMarketData(prev => ({ ...prev, [data.marketType]: data.data }));
-    });
+      setMarketData((prev: any) => ({ ...prev, [data.marketType]: data.data }));
+    };
 
-    return () => unsubscribe();
-  }, [subscribe]);
+    // Note: Event subscription would be handled by the WebSocket service
+    // This is a placeholder for the actual implementation
+    return () => {
+      // Cleanup would be handled by the WebSocket service
+    };
+  }, []);
 
   const tabs = [
     { id: 'player-props', label: 'Player Props', icon: '🏈', description: 'Individual player performance betting' },

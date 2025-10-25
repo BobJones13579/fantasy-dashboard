@@ -111,9 +111,8 @@ export const OddsDisplay: React.FC<OddsDisplayProps> = ({
 
   return (
     <Panel 
-      shadow={isSelected ? "large" : "small"} 
-      padding="16" 
-      margin="8"
+      shadow={true} 
+      margin="24"
       style={{ 
         border: isSelected ? '2px solid #007bff' : '1px solid #e0e0e0',
         cursor: onSelect ? 'pointer' : 'default'
@@ -121,29 +120,29 @@ export const OddsDisplay: React.FC<OddsDisplayProps> = ({
       onClick={onSelect}
     >
       {/* Matchup Header */}
-      <FlexRow spacing="8" margin="0 0 12 0">
-        <Text size="18" font="semibold" color="primary">
+      <FlexRow spacing="12" margin="24">
+        <Text size="18">
           {matchup.team1} vs {matchup.team2}
         </Text>
         <FlexSpacer />
-        <Text size="14" color={getStatusColor(matchup.status)}>
+        <Text size="18" cx={getStatusColor(matchup.status)}>
           {getStatusText(matchup.status)}
         </Text>
       </FlexRow>
 
       {/* Scores (if available) */}
       {(matchup.team1Score !== undefined || matchup.team2Score !== undefined) && (
-        <FlexRow spacing="8" margin="0 0 12 0">
-          <Text size="24" font="semibold">
+        <FlexRow spacing="12" margin="24">
+          <Text size="24">
             {matchup.team1Score || 0} - {matchup.team2Score || 0}
           </Text>
         </FlexRow>
       )}
 
       {/* Moneyline Odds */}
-      <Panel shadow="small" padding="12" margin="0 0 8 0">
-        <Text size="16" font="semibold" margin="0 0 8 0">Moneyline</Text>
-        <FlexRow spacing="8">
+      <Panel shadow={true} margin="24">
+        <Text size="18">Moneyline</Text>
+        <FlexRow spacing="12">
           <Button
             caption={`${matchup.team1} ${formatOdds(matchup.team1Odds)}`}
             onClick={(e) => {
@@ -152,9 +151,9 @@ export const OddsDisplay: React.FC<OddsDisplayProps> = ({
                 handleBet(matchup.team1, matchup.team1Odds, 'moneyline');
               }
             }}
-            disabled={!isConnected || matchup.status === 'completed'}
+            isDisabled={!isConnected || matchup.status === 'completed'}
             color="primary"
-            size="small"
+            size="18"
           />
           <Button
             caption={`${matchup.team2} ${formatOdds(matchup.team2Odds)}`}
@@ -164,18 +163,18 @@ export const OddsDisplay: React.FC<OddsDisplayProps> = ({
                 handleBet(matchup.team2, matchup.team2Odds, 'moneyline');
               }
             }}
-            disabled={!isConnected || matchup.status === 'completed'}
+            isDisabled={!isConnected || matchup.status === 'completed'}
             color="primary"
-            size="small"
+            size="18"
           />
         </FlexRow>
       </Panel>
 
       {/* Spread Odds */}
       {matchup.spread !== undefined && (
-        <Panel shadow="small" padding="12" margin="0 0 8 0">
-          <Text size="16" font="semibold" margin="0 0 8 0">Spread</Text>
-          <FlexRow spacing="8">
+        <Panel shadow={true} margin="24">
+          <Text size="18">Spread</Text>
+          <FlexRow spacing="12">
             <Button
               caption={`${matchup.team1} ${formatSpread(matchup.spread)}`}
               onClick={(e) => {
@@ -184,9 +183,9 @@ export const OddsDisplay: React.FC<OddsDisplayProps> = ({
                   handleBet(matchup.team1, matchup.team1Odds, 'spread');
                 }
               }}
-              disabled={!isConnected || matchup.status === 'completed'}
+              isDisabled={!isConnected || matchup.status === 'completed'}
               color="secondary"
-              size="small"
+              size="18"
             />
             <Button
               caption={`${matchup.team2} ${formatSpread(-matchup.spread)}`}
@@ -196,9 +195,9 @@ export const OddsDisplay: React.FC<OddsDisplayProps> = ({
                   handleBet(matchup.team2, matchup.team2Odds, 'spread');
                 }
               }}
-              disabled={!isConnected || matchup.status === 'completed'}
+              isDisabled={!isConnected || matchup.status === 'completed'}
               color="secondary"
-              size="small"
+              size="18"
             />
           </FlexRow>
         </Panel>
@@ -206,9 +205,9 @@ export const OddsDisplay: React.FC<OddsDisplayProps> = ({
 
       {/* Total Odds */}
       {matchup.total !== undefined && (
-        <Panel shadow="small" padding="12" margin="0 0 8 0">
-          <Text size="16" font="semibold" margin="0 0 8 0">Total</Text>
-          <FlexRow spacing="8">
+        <Panel shadow={true} margin="24">
+          <Text size="18">Total</Text>
+          <FlexRow spacing="12">
             <Button
               caption={`Over ${matchup.total}`}
               onClick={(e) => {
@@ -217,9 +216,9 @@ export const OddsDisplay: React.FC<OddsDisplayProps> = ({
                   handleBet('over', matchup.team1Odds, 'total');
                 }
               }}
-              disabled={!isConnected || matchup.status === 'completed'}
-              color="success"
-              size="small"
+              isDisabled={!isConnected || matchup.status === 'completed'}
+              color="primary"
+              size="18"
             />
             <Button
               caption={`Under ${matchup.total}`}
@@ -229,9 +228,9 @@ export const OddsDisplay: React.FC<OddsDisplayProps> = ({
                   handleBet('under', matchup.team2Odds, 'total');
                 }
               }}
-              disabled={!isConnected || matchup.status === 'completed'}
-              color="error"
-              size="small"
+              isDisabled={!isConnected || matchup.status === 'completed'}
+              color="critical"
+              size="18"
             />
           </FlexRow>
         </Panel>
@@ -239,39 +238,39 @@ export const OddsDisplay: React.FC<OddsDisplayProps> = ({
 
       {/* Last Updated */}
       {matchup.lastUpdated && (
-        <Text size="12" color="secondary" margin="8 0 0 0">
+        <Text size="18" color="secondary">
           Updated: {new Date(matchup.lastUpdated).toLocaleTimeString()}
         </Text>
       )}
 
       {/* Betting Interface Modal */}
       {showBettingInterface && selectedBet && (
-        <Panel shadow="large" padding="16" margin="8 0 0 0" style={{ border: '2px solid #007bff' }}>
-          <Text size="16" font="semibold" margin="0 0 12 0">
+        <Panel shadow={true} style={{ border: '2px solid #007bff' }}>
+          <Text size="18">
             Place Bet: {selectedBet.selection}
           </Text>
           
-          <Text size="14" margin="0 0 8 0">
+          <Text size="18">
             Odds: {formatOdds(selectedBet.odds)}
           </Text>
           
-          <Text size="14" margin="0 0 8 0">
+          <Text size="18">
             Bet Amount: {betAmount} tokens
           </Text>
           
-          <Text size="14" margin="0 0 12 0">
+          <Text size="18">
             Potential Payout: {Math.round(betAmount * (selectedBet.odds > 0 ? selectedBet.odds / 100 + 1 : 100 / Math.abs(selectedBet.odds) + 1))} tokens
           </Text>
           
-          <FlexRow spacing="8">
+          <FlexRow spacing="12">
             <Button
               caption="Confirm Bet"
               onClick={(e) => {
                 e.stopPropagation();
                 confirmBet();
               }}
-              color="success"
-              size="small"
+              color="primary"
+              size="18"
             />
             <Button
               caption="Cancel"
@@ -280,7 +279,7 @@ export const OddsDisplay: React.FC<OddsDisplayProps> = ({
                 cancelBet();
               }}
               color="secondary"
-              size="small"
+              size="18"
             />
           </FlexRow>
         </Panel>
@@ -288,8 +287,8 @@ export const OddsDisplay: React.FC<OddsDisplayProps> = ({
 
       {/* Connection Status Indicator */}
       {!isConnected && (
-        <Panel shadow="small" padding="8" margin="8 0 0 0">
-          <Text size="12" color="warning">
+        <Panel shadow={true}>
+          <Text size="18" color="warning">
             Offline - Odds may be outdated
           </Text>
         </Panel>

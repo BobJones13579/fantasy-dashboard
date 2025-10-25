@@ -5,7 +5,8 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { Panel, Text, Button, FlexRow, FlexSpacer } from '@epam/uui';
-import { useWebSocket, OddsUpdateData } from '../../hooks/useWebSocket';
+import { useWebSocket } from '../../hooks/useWebSocket';
+import { OddsUpdateData } from '../../services/websocket';
 import { OddsDisplay } from './OddsDisplay';
 
 export interface Matchup {
@@ -130,10 +131,10 @@ export const OddsBoard: React.FC<OddsBoardProps> = ({
   };
 
   return (
-    <Panel shadow="medium" margin="24">
+    <Panel shadow={true} margin="24">
       {/* Header */}
       <FlexRow spacing="12" margin="12">
-        <Text size="48" font="semibold">Live Matchup Odds</Text>
+        <Text size="48">Live Matchup Odds</Text>
         <FlexSpacer />
         <div className="flex items-center space-x-2">
           <div 
@@ -141,7 +142,7 @@ export const OddsBoard: React.FC<OddsBoardProps> = ({
               isConnected ? 'bg-green-500' : 'bg-red-500'
             }`}
           />
-          <Text size="24" color={isConnected ? 'success' : 'error'}>
+          <Text size="24" cx={isConnected ? 'text-green-600' : 'text-red-600'}>
             {isConnected ? 'Connected' : 'Disconnected'}
           </Text>
         </div>
@@ -149,22 +150,21 @@ export const OddsBoard: React.FC<OddsBoardProps> = ({
 
       {/* Connection Status */}
       {!isConnected && (
-        <Panel shadow="small" margin="12" padding="12">
-          <Text size="24" color="warning">
+        <Panel shadow={true} margin="24">
+          <Text size="24">
             WebSocket disconnected. Attempting to reconnect...
           </Text>
           <Button 
             caption="Reconnect" 
             onClick={connect}
-            margin="12 0 0 0"
           />
         </Panel>
       )}
 
       {/* Last Update Info */}
       {lastUpdate && (
-        <Panel shadow="small" margin="12" padding="8">
-          <Text size="18" color="secondary">
+        <Panel shadow={true} margin="24">
+          <Text size="18">
             Last updated: {formatLastUpdate(lastUpdate)}
           </Text>
         </Panel>
@@ -187,8 +187,8 @@ export const OddsBoard: React.FC<OddsBoardProps> = ({
 
       {/* No Matchups */}
       {liveMatchups.length === 0 && (
-        <Panel shadow="small" margin="12" padding="24">
-          <Text size="24" color="secondary">
+        <Panel shadow={true} margin="24">
+          <Text size="24">
             No matchups available at this time.
           </Text>
         </Panel>

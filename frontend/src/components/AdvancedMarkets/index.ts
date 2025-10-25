@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-export { PlayerProps } from './PlayerProps';
+export { PlayerPropsMarket } from './PlayerPropsMarket';
 export { CustomMatchups } from './CustomMatchups';
 export { FantasyMarkets } from './FantasyMarkets';
 export { AdvancedMarkets } from './AdvancedMarkets';
